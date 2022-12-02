@@ -1,0 +1,46 @@
+<h1>Ordenes</h1>
+<div class="spinner-container">
+    <div class="spinner-border text-dark" *ngIf="loadingService.loading"></div>
+</div>
+<div class="mat-elevation-z8">
+    <mat-card class="mat-elevation-z0">
+        <mat-form-field>
+            <input matInput type="text" #keyFilter placeholder="Filter" />
+        </mat-form-field>
+        <!-- <button mat-raised-button color="primary" [routerLink]="['/dashboard/users/add']" type="button"
+            style="float: right">
+            + Agregar Usuario
+        </button> -->
+        <a mat-raised-button color="primary" class="btn btn-sm btn-success text-white" routerLink="/orders/order"
+            style="float: right"><i class="fa fa-plus"></i> Create Order</a>
+    </mat-card>
+    <table class="table table-hover">
+        <thead class="table-light">
+            <th scope="col">#Order No.</th>
+            <th scope="col">Customer</th>
+            <th scope="col">P. Method</th>
+            <th scope="col">G. Total</th>
+            <th scope="col"><a class="btn btn-sm btn-success text-white" routerLink="/orders/order"><i
+                        class="fa fa-plus"></i>Create Order</a></th>
+        </thead>
+        <tbody class="table-group-divider">
+            <tr *ngIf="!orderList || !orderList.length">
+                <td class="font-italic text-center" colspan="5">
+                    Not item selected for this order.
+                </td>
+            </tr>
+            <tr *ngFor="let order of orderList; let i = index">
+                <td (click)="openForEdit(order.id)">{{order.id}}</td>
+                <td (click)="openForEdit(order.id)">{{order.customerId}}</td>
+                <td (click)="openForEdit(order.id)">{{order.pMethod}}</td>
+                <td (click)="openForEdit(order.id)">{{order.total | number:'1.2-2'}}</td>
+                <td>
+                    <!-- <a class="btn btn-sm btn-info text-white" (click)="OrderItemAddEdit(i, .formData.id)"><i
+                        class="fa fa-pencil"></i></a> -->
+                    <a class="btn btn-sm text-danger ml-1" (click)="onOrderDelete(order.id)"><i
+                            class="fa fa-trash"></i></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

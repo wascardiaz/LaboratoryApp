@@ -1,0 +1,217 @@
+<h1 mat-dialog-title><span class="titlebar-text" title="Edicion Estudio de Laboratorio">Edicion Resultado</span></h1>
+<mat-dialog-content class="mat-typography">
+    <form [formGroup]="orderForm">
+        <fieldset [disabled]="!editMode">
+            <ng-container formArrayName="analiticsGroups">
+                <ng-container *ngFor="let group of analiticsGroupsArray?.controls; let gIndex = index">
+                    <ng-container [formGroupName]="gIndex">
+                        <table class="table table-bordered table-striped table-sm table-va-middle">
+                            <thead>
+                                <tr>
+                                    <td class="sub" colspan="6">
+                                        <h3>{{ group.value.name}}</h3>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th style="min-width: 200px;"> Variable </th>
+                                    <th style="width: auto;"> Resultado </th>
+                                    <th style="width: 10%;" *ngIf="editMode">
+                                        <!-- <mat-checkbox class="check-margin" [checked]="descendantsAllSelected(group)"
+                                            [indeterminate]="descendantsPartiallySelected(group)"
+                                            (change)="setAll($event.checked)" matTooltip="Validar Todo"
+                                            [disabled]="!editMode || !editMode && canValid(account.role)">
+                                            Validar
+                                        </mat-checkbox> -->
+                                        <mat-checkbox class="check-margin" [checked]="allComplete"
+                                            [indeterminate]="someComplete()" (change)="setAll($event.checked)"
+                                            matTooltip="Validar Todo"
+                                            [disabled]="!editMode || !editMode && canValid(user?.role)">
+                                            Validar
+                                        </mat-checkbox>
+                                    </th>
+                                    <th style="width: 10%;"> Comentar </th>
+                                    <th style="width: 10%;"> Unidad </th>
+                                    <th style="width: 20%;"> Valor de Referencia </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ng-container formArrayName="analiticas">
+                                    <ng-container
+                                        *ngFor="let analitic of getAnaliticsArray(gIndex)?.controls; let aIndex = index">
+                                        <ng-container [formGroupName]="aIndex">
+                                            <!-- <tr>
+                                            <td colspan="6">
+                                                <span> {{ analitic.value.reng_descripcion}}</span>
+                                            </td>
+                                        </tr> -->
+                                            <ng-container formArrayName="variables">
+                                                <ng-container
+                                                    *ngFor="let vbleControl of getVariableArrayControlByIndex(gIndex, aIndex)?.controls; let vIndex = index">
+                                                    <ng-container [formGroupName]="vIndex">
+                                                        <tr *ngIf="vbleControl.value.type !== 'T' && editMode">
+                                                            <td>
+                                                                <p class="mat-body">
+                                                                    {{vbleControl.value.description}}</p>
+                                                            </td>
+                                                            <ng-container [ngSwitch]="vbleControl.value.type">
+                                                                <td *ngSwitchCase="'L'">
+                                                                    <mat-form-field class="example-full-width"
+                                                                        appearance="fill" *ngIf="editMode">
+                                                                        <input matInput formControlName="result"
+                                                                            (input)="_filter($event, vbleControl.value?.valores)"
+                                                                            [matAutocomplete]="auto">
+                                                                    </mat-form-field>
+                                                                    <mat-autocomplete #auto="matAutocomplete">
+                                                                        <mat-option
+                                                                            *ngFor="let option of vbleControl.value?.valores"
+                                                                            [value]="option.vble_valor">
+                                                                            {{option.vble_valor}}
+                                                                        </mat-option>
+                                                                    </mat-autocomplete>
+                                                                    <span *ngIf="!editMode">
+                                                                        <p class="mat-body">
+                                                                            {{vbleControl.value.result}}</p>
+                                                                    </span>
+                                                                </td>
+                                                                <td *ngSwitchCase="'N'">
+                                                                    <mat-form-field class="example-full-width"
+                                                                        appearance="fill" *ngIf="editMode">
+                                                                        <input matInput type="number"
+                                                                            formControlName="result">
+                                                                    </mat-form-field>
+                                                                    <span *ngIf="!editMode">
+                                                                        <p class="mat-body">
+                                                                            {{vbleControl.value.result}}</p>
+                                                                    </span>
+                                                                    <span class="right" style="padding-right: 32px;"
+                                                                        *ngIf="!editMode">
+                                                                        <i *ngIf="vbleControl.value?.vble_valor && vbleControl.value.result"
+                                                                            class="fa-solid red-arrow float"
+                                                                            [ngClass]="{'fa-down-long': vbleControl.value.result < vbleControl.value.vble_minimo, 
+                                                                        'fa-up-long' : vbleControl.value.result > vbleControl.value.vble_maximo }"></i>
+                                                                    </span>
+
+                                                                </td>
+                                                                <td *ngSwitchDefault>
+                                                                    <mat-form-field class="example-full-width"
+                                                                        appearance="fill" *ngIf="editMode">
+                                                                        <input matInput
+                                                                            formControlName="result">
+                                                                    </mat-form-field>
+                                                                    <span *ngIf="!editMode">
+                                                                        <p class="mat-body">
+                                                                            {{vbleControl.value.result}}</p>
+                                                                    </span>
+                                                                </td>
+                                                            </ng-container>
+                                                            <td>
+                                                                <div class="form-check">
+                                                                    <mat-checkbox class="check-margin"
+                                                                        (change)="updateAllComplete()"
+                                                                        formControlName="resu_validado"
+                                                                        [disabled]="!editMode">
+                                                                    </mat-checkbox>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <mat-form-field class="example-full-width" rows="1"
+                                                                    appearance="legacy" *ngIf="editMode">
+                                                                    <mat-label>Leave a comment</mat-label>
+                                                                    <textarea matInput formControlName="resu_comentario"
+                                                                        placeholder="Ex. It makes me feel..."></textarea>
+                                                                </mat-form-field>
+                                                                <p class="mat-body" *ngIf="!editMode">
+                                                                    {{vbleControl.value?.resu_comentario}}</p>
+                                                            </td>
+                                                            <td>
+                                                                <p class="mat-body">{{vbleControl.value?.vbleunid}}</p>
+                                                            </td>
+                                                            <td>
+                                                                <p *ngIf="vbleControl.value?.type !== 'L'"
+                                                                    class="mat-body">
+                                                                    {{vbleControl.value?.vble_valor}}
+                                                                </p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr
+                                                            *ngIf="vbleControl.value.type !== 'T' && !editMode && vbleControl.value.result !== ''">
+                                                            <td>
+                                                                {{vbleControl.value.description}}
+                                                            </td>
+                                                            <ng-container [ngSwitch]="vbleControl.value.type">
+                                                                <td *ngSwitchCase="'L'">
+                                                                    <span
+                                                                        *ngIf="!editMode">{{vbleControl.value.result}}</span>
+                                                                </td>
+                                                                <td *ngSwitchCase="'N'">
+                                                                    <span
+                                                                        *ngIf="!editMode">{{vbleControl.value.result}}</span>
+                                                                    <span class="right" style="padding-right: 32px;"
+                                                                        *ngIf="!editMode">
+                                                                        <i *ngIf="vbleControl.value?.vble_valor && vbleControl.value.result"
+                                                                            class="fa-solid red-arrow float"
+                                                                            [ngClass]="{'fa-down-long': vbleControl.value.result < vbleControl.value.vble_minimo, 
+                                                                        'fa-up-long' : vbleControl.value.result > vbleControl.value.vble_maximo }"></i>
+                                                                    </span>
+
+                                                                </td>
+                                                                <td *ngSwitchDefault>
+                                                                    <span
+                                                                        *ngIf="!editMode">{{vbleControl.value.result}}</span>
+                                                                </td>
+                                                            </ng-container>
+                                                            <td>
+                                                                {{vbleControl.value?.resu_comentario}}
+                                                            </td>
+                                                            <td>
+                                                                {{vbleControl.value?.vbleunid}}
+                                                            </td>
+                                                            <td>
+                                                                <p *ngIf="vbleControl.value?.type !== 'L'">
+                                                                    {{vbleControl.value?.vble_valor}}
+                                                                </p>
+                                                            </td>
+                                                        </tr>
+                                                    </ng-container>
+                                                </ng-container>
+                                            </ng-container>
+
+                                        </ng-container>
+                                    </ng-container>
+                                </ng-container>
+
+                                <!-- <tr  *ngIf="loading$ | async">
+                                <td colspan="6" class="text-center">
+                                    <span class="spinner-border spinner-border-lg align-center"></span>
+                                </td>
+                            </tr> -->
+                            </tbody>
+                        </table>
+
+                    </ng-container>
+                </ng-container>
+            </ng-container>
+        </fieldset>
+    </form>
+    <!-- <pre>{{ orderForm.value | json }}</pre> -->
+</mat-dialog-content>
+<div mat-dialog-actions align="end">
+    <div class="spinner-container">
+        <div class="spinner-border text-dark" *ngIf="loadingService.loading"></div>
+    </div>
+    <!-- <button mat-button mat-dialog-close>Cancel</button> -->
+    <button mat-button matTooltip="Previsualizar Resultado(s) en PDF" color="default" (click)="generatePdf()"
+        [disabled]="editMode">
+        <mat-icon>visibility</mat-icon>
+    </button>
+    <button mat-button matTooltip="Imprimir Resultados" color="default" (click)="generatePdf('print')"
+        [disabled]="editMode">
+        <mat-icon>print</mat-icon>
+    </button>
+    <button mat-button matTooltip="Descargar Resultado(s) PDF" color="default" (click)="generatePdf('download')"
+        [disabled]="editMode">
+        <mat-icon>download</mat-icon>
+    </button>
+    <button mat-button type="submit" (click)="onSubmit()" [disabled]="!editMode">Guardar</button>
+    <button mat-button (click)="dialogClose()" cdkFocusInitial>Cerrar</button>
+</div>

@@ -1,0 +1,657 @@
+<h1>Suplidor Detalles</h1>
+
+<div style="width: 900px">
+  <form [formGroup]="supplierForm" (ngSubmit)="onSubmit()">
+    <!-- Hidden filed -->
+    <input type="number" hidden formControlName="id" name="id">
+    <div class="row g-2">
+      <div class="col-md-2">
+        <div class="form-group"><label for="rnc">RNC</label><input type="text" name="rnc" formControlName="rnc"
+            placeholder="rnc" [ngClass]="{'is-invalid': submitted && f['rnc'].errors}"
+            class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['rnc'].errors"><small
+              *ngIf="f['rnc'].hasError('required')">* El rnc es un campo requerido</small><small class="text-danger"
+              *ngIf="f['rnc'].hasError('pattern')">El rnc no cumple con el patron requerido!</small><small
+              *ngIf="f['rnc'].hasError('serverValidationError')">{{f['rnc'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <div class="form-group"><label for="cedula">Cedula</label><input type="text" name="cedula"
+            formControlName="cedula" placeholder="cedula" [ngClass]="{'is-invalid': submitted && f['cedula'].errors}"
+            class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['cedula'].errors"><small
+              *ngIf="f['cedula'].hasError('required')">* El cedula es un campo requerido</small><small
+              class="text-danger" *ngIf="f['cedula'].hasError('pattern')">El cedula no cumple con el patron
+              requerido!</small><small
+              *ngIf="f['cedula'].hasError('serverValidationError')">{{f['cedula'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group"><label for="razon_social">Razon Social</label><input type="text" name="razon_social"
+            formControlName="razon_social" placeholder="Razon Social"
+            [ngClass]="{'is-invalid': submitted && f['razon_social'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['razon_social'].errors"><small
+              *ngIf="f['razon_social'].hasError('required')">* El razon social es un campo requerido</small><small
+              class="text-danger" *ngIf="f['razon_social'].hasError('pattern')">El razon social no cumple con el patron
+              requerido!</small><small
+              *ngIf="f['razon_social'].hasError('serverValidationError')">{{f['razon_social'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="form-group"><label for="nombre_comercial">Nombre Comercial</label><input type="text"
+            name="nombre_comercial" formControlName="nombre_comercial" placeholder="Nombre Comercial"
+            [ngClass]="{'is-invalid': submitted && f['nombre_comercial'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['nombre_comercial'].errors"><small
+              *ngIf="f['nombre_comercial'].hasError('required')">* El nombre comercial es un campo
+              requerido</small><small class="text-danger" *ngIf="f['nombre_comercial'].hasError('pattern')">El
+              nombre comercial no cumple con el patron requerido!</small><small
+              *ngIf="f['nombre_comercial'].hasError('serverValidationError')">{{f['nombre_comercial'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="contacto">Contacto</label><input type="text" name="contacto"
+            formControlName="contacto" placeholder="Contacto"
+            [ngClass]="{'is-invalid': submitted && f['contacto'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['contacto'].errors"><small
+              *ngIf="f['contacto'].hasError('required')">* El contacto es un campo requerido</small><small
+              class="text-danger" *ngIf="f['contacto'].hasError('pattern')">El contacto no cumple con el patron
+              requerido!</small><small
+              *ngIf="f['contacto'].hasError('serverValidationError')">{{f['contacto'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="web_site">Web Site</label><input type="text" name="web_site"
+            formControlName="web_site" placeholder="Web Site"
+            [ngClass]="{'is-invalid': submitted && f['web_site'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['web_site'].errors"><small
+              *ngIf="f['web_site'].hasError('required')">* El web site es un campo requerido</small><small
+              class="text-danger" *ngIf="f['web_site'].hasError('pattern')">El web site no cumple con el patron
+              requerido!</small><small
+              *ngIf="f['web_site'].hasError('serverValidationError')">{{f['web_site'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="api_url">API Url</label><input type="text" name="api_url"
+            formControlName="api_url" placeholder="API Url" [ngClass]="{'is-invalid': submitted && f['api_url'].errors}"
+            class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['api_url'].errors"><small
+              *ngIf="f['api_url'].hasError('required')">* El API Url es un campo requerido</small><small
+              class="text-danger" *ngIf="f['api_url'].hasError('pattern')">El API Url no cumple con el patron
+              requerido!</small><small
+              *ngIf="f['api_url'].hasError('serverValidationError')">{{f['api_url'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="comentario">Comentario</label><input type="text" name="comentario"
+            formControlName="comentario" placeholder="Comentario"
+            [ngClass]="{'is-invalid': submitted && f['comentario'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['comentario'].errors"><small
+              *ngIf="f['comentario'].hasError('required')">* El comentario es un campo requerido</small><small
+              class="text-danger" *ngIf="f['comentario'].hasError('pattern')">El comentario no cumple con el patron
+              requerido!</small><small
+              *ngIf="f['comentario'].hasError('serverValidationError')">{{f['comentario'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="categoria">Categoría</label><input type="text" name="categoria"
+            formControlName="categoria" placeholder="Categoría"
+            [ngClass]="{'is-invalid': submitted && f['categoria'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['categoria'].errors"><small
+              *ngIf="f['categoria'].hasError('required')">* El categoría es un campo requerido</small><small
+              class="text-danger" *ngIf="f['categoria'].hasError('pattern')">El categoría no cumple con el patron
+              requerido!</small><small
+              *ngIf="f['categoria'].hasError('serverValidationError')">{{f['categoria'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="grupo">Grupo</label><input type="text" name="grupo" formControlName="grupo"
+            placeholder="Grupo" [ngClass]="{'is-invalid': submitted && f['grupo'].errors}"
+            class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['grupo'].errors"><small
+              *ngIf="f['grupo'].hasError('required')">* El grupo es un campo requerido</small><small class="text-danger"
+              *ngIf="f['grupo'].hasError('pattern')">El grupo no cumple con el patron requerido!</small><small
+              *ngIf="f['grupo'].hasError('serverValidationError')">{{f['grupo'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="email">Email</label><input type="text" name="email" formControlName="email"
+            placeholder="Email" [ngClass]="{'is-invalid': submitted && f['email'].errors}"
+            class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['email'].errors"><small
+              *ngIf="f['email'].hasError('required')">* El email es un campo requerido</small><small class="text-danger"
+              *ngIf="f['email'].hasError('pattern')">El email no cumple con el patron requerido!</small><small
+              *ngIf="f['email'].hasError('serverValidationError')">{{f['email'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="local">Local</label><input type="text" name="local" formControlName="local"
+            placeholder="Local" [ngClass]="{'is-invalid': submitted && f['local'].errors}"
+            class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['local'].errors"><small
+              *ngIf="f['local'].hasError('required')">* El local es un campo requerido</small><small class="text-danger"
+              *ngIf="f['local'].hasError('pattern')">El local no cumple con el patron requerido!</small><small
+              *ngIf="f['local'].hasError('serverValidationError')">{{f['local'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="tipo">Tipo</label><input type="text" name="tipo" formControlName="tipo"
+            placeholder="Tipo" [ngClass]="{'is-invalid': submitted && f['tipo'].errors}"
+            class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['tipo'].errors"><small
+              *ngIf="f['tipo'].hasError('required')">* El tipo es un campo requerido</small><small class="text-danger"
+              *ngIf="f['tipo'].hasError('pattern')">El tipo no cumple con el patron requerido!</small><small
+              *ngIf="f['tipo'].hasError('serverValidationError')">{{f['tipo'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="mercado">Mercado</label><input type="text" name="mercado"
+            formControlName="mercado" placeholder="Mercado" [ngClass]="{'is-invalid': submitted && f['mercado'].errors}"
+            class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['mercado'].errors"><small
+              *ngIf="f['mercado'].hasError('required')">* El mercado es un campo requerido</small><small
+              class="text-danger" *ngIf="f['mercado'].hasError('pattern')">El mercado no cumple con el patron
+              requerido!</small><small
+              *ngIf="f['mercado'].hasError('serverValidationError')">{{f['mercado'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="cuenta">Cuenta</label><input type="text" name="cuenta"
+            formControlName="cuenta" placeholder="Cuenta" [ngClass]="{'is-invalid': submitted && f['cuenta'].errors}"
+            class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['cuenta'].errors"><small
+              *ngIf="f['cuenta'].hasError('required')">* El cuenta es un campo requerido</small><small
+              class="text-danger" *ngIf="f['cuenta'].hasError('pattern')">El cuenta no cumple con el patron
+              requerido!</small><small
+              *ngIf="f['cuenta'].hasError('serverValidationError')">{{f['cuenta'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="address">Address</label><input type="text" name="address"
+            formControlName="address" placeholder="Address" [ngClass]="{'is-invalid': submitted && f['address'].errors}"
+            class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['address'].errors"><small
+              *ngIf="f['address'].hasError('required')">* El address es un campo requerido</small><small
+              class="text-danger" *ngIf="f['address'].hasError('pattern')">El address no cumple con el patron
+              requerido!</small><small
+              *ngIf="f['address'].hasError('serverValidationError')">{{f['address'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="direccion">Dirección</label><input type="text" name="direccion"
+            formControlName="direccion" placeholder="Dirección"
+            [ngClass]="{'is-invalid': submitted && f['direccion'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['direccion'].errors"><small
+              *ngIf="f['direccion'].hasError('required')">* El dirección es un campo requerido</small><small
+              class="text-danger" *ngIf="f['direccion'].hasError('pattern')">El dirección no cumple con el patron
+              requerido!</small><small
+              *ngIf="f['direccion'].hasError('serverValidationError')">{{f['direccion'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="sector">sector</label><input type="text" name="sector"
+            formControlName="sector" placeholder="sector" [ngClass]="{'is-invalid': submitted && f['sector'].errors}"
+            class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['sector'].errors"><small
+              *ngIf="f['sector'].hasError('required')">* El sector es un campo requerido</small><small
+              class="text-danger" *ngIf="f['sector'].hasError('pattern')">El sector no cumple con el patron
+              requerido!</small><small
+              *ngIf="f['sector'].hasError('serverValidationError')">{{f['sector'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="ciudad">ciudad</label><input type="text" name="ciudad"
+            formControlName="ciudad" placeholder="ciudad" [ngClass]="{'is-invalid': submitted && f['ciudad'].errors}"
+            class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['ciudad'].errors"><small
+              *ngIf="f['ciudad'].hasError('required')">* El ciudad es un campo requerido</small><small
+              class="text-danger" *ngIf="f['ciudad'].hasError('pattern')">El ciudad no cumple con el patron
+              requerido!</small><small
+              *ngIf="f['ciudad'].hasError('serverValidationError')">{{f['ciudad'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="lugar_tipo">lugar_tipo</label><input type="text" name="lugar_tipo"
+            formControlName="lugar_tipo" placeholder="lugar_tipo"
+            [ngClass]="{'is-invalid': submitted && f['lugar_tipo'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['lugar_tipo'].errors"><small
+              *ngIf="f['lugar_tipo'].hasError('required')">* El lugar_tipo es un campo requerido</small><small
+              class="text-danger" *ngIf="f['lugar_tipo'].hasError('pattern')">El lugar_tipo no cumple con el patron
+              requerido!</small><small
+              *ngIf="f['lugar_tipo'].hasError('serverValidationError')">{{f['lugar_tipo'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="lug_nombre">lug_nombre</label><input type="text" name="lug_nombre"
+            formControlName="lug_nombre" placeholder="lug_nombre"
+            [ngClass]="{'is-invalid': submitted && f['lug_nombre'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['lug_nombre'].errors"><small
+              *ngIf="f['lug_nombre'].hasError('required')">* El lug_nombre es un campo requerido</small><small
+              class="text-danger" *ngIf="f['lug_nombre'].hasError('pattern')">El lug_nombre no cumple con el patron
+              requerido!</small><small
+              *ngIf="f['lug_nombre'].hasError('serverValidationError')">{{f['lug_nombre'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="lug_numero">lug_numero</label><input type="text" name="lug_numero"
+            formControlName="lug_numero" placeholder="lug_numero"
+            [ngClass]="{'is-invalid': submitted && f['lug_numero'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['lug_numero'].errors"><small
+              *ngIf="f['lug_numero'].hasError('required')">* El lug_numero es un campo requerido</small><small
+              class="text-danger" *ngIf="f['lug_numero'].hasError('pattern')">El lug_numero no cumple con el patron
+              requerido!</small><small
+              *ngIf="f['lug_numero'].hasError('serverValidationError')">{{f['lug_numero'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="lug_apto">lug_apto</label><input type="text" name="lug_apto"
+            formControlName="lug_apto" placeholder="lug_apto"
+            [ngClass]="{'is-invalid': submitted && f['lug_apto'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['lug_apto'].errors"><small
+              *ngIf="f['lug_apto'].hasError('required')">* El lug_apto es un campo requerido</small><small
+              class="text-danger" *ngIf="f['lug_apto'].hasError('pattern')">El lug_apto no cumple con el patron
+              requerido!</small><small
+              *ngIf="f['lug_apto'].hasError('serverValidationError')">{{f['lug_apto'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="sect_codigo">sect_codigo</label><input type="text" name="sect_codigo"
+            formControlName="sect_codigo" placeholder="sect_codigo"
+            [ngClass]="{'is-invalid': submitted && f['sect_codigo'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['sect_codigo'].errors"><small
+              *ngIf="f['sect_codigo'].hasError('required')">* El sect_codigo es un campo requerido</small><small
+              class="text-danger" *ngIf="f['sect_codigo'].hasError('pattern')">El sect_codigo no cumple con el patron
+              requerido!</small><small
+              *ngIf="f['sect_codigo'].hasError('serverValidationError')">{{f['sect_codigo'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="ciud_codigo">ciud_codigo</label><input type="text" name="ciud_codigo"
+            formControlName="ciud_codigo" placeholder="ciud_codigo"
+            [ngClass]="{'is-invalid': submitted && f['ciud_codigo'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['ciud_codigo'].errors"><small
+              *ngIf="f['ciud_codigo'].hasError('required')">* El ciud_codigo es un campo requerido</small><small
+              class="text-danger" *ngIf="f['ciud_codigo'].hasError('pattern')">El ciud_codigo no cumple con el patron
+              requerido!</small><small
+              *ngIf="f['ciud_codigo'].hasError('serverValidationError')">{{f['ciud_codigo'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="zona_codigo">zona_codigo</label><input type="text" name="zona_codigo"
+            formControlName="zona_codigo" placeholder="zona_codigo"
+            [ngClass]="{'is-invalid': submitted && f['zona_codigo'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['zona_codigo'].errors"><small
+              *ngIf="f['zona_codigo'].hasError('required')">* El zona_codigo es un campo requerido</small><small
+              class="text-danger" *ngIf="f['zona_codigo'].hasError('pattern')">El zona_codigo no cumple con el patron
+              requerido!</small><small
+              *ngIf="f['zona_codigo'].hasError('serverValidationError')">{{f['zona_codigo'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="oficina">Oficina</label><input type="text" name="oficina"
+            formControlName="oficina" placeholder="Oficina" [ngClass]="{'is-invalid': submitted && f['oficina'].errors}"
+            class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['oficina'].errors"><small
+              *ngIf="f['oficina'].hasError('required')">* El oficina es un campo requerido</small><small
+              class="text-danger" *ngIf="f['oficina'].hasError('pattern')">El oficina no cumple con el patron
+              requerido!</small><small
+              *ngIf="f['oficina'].hasError('serverValidationError')">{{f['oficina'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="telefono">Teléfono</label><input type="text" name="telefono"
+            formControlName="telefono" placeholder="Teléfono"
+            [ngClass]="{'is-invalid': submitted && f['telefono'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['telefono'].errors"><small
+              *ngIf="f['telefono'].hasError('required')">* El teléfono es un campo requerido</small><small
+              class="text-danger" *ngIf="f['telefono'].hasError('pattern')">El teléfono no cumple con el patron
+              requerido!</small><small
+              *ngIf="f['telefono'].hasError('serverValidationError')">{{f['telefono'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="fax">Fax</label><input type="text" name="fax" formControlName="fax"
+            placeholder="Fax" [ngClass]="{'is-invalid': submitted && f['fax'].errors}"
+            class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['fax'].errors"><small
+              *ngIf="f['fax'].hasError('required')">* El fax es un campo requerido</small><small class="text-danger"
+              *ngIf="f['fax'].hasError('pattern')">El fax no cumple con el patron requerido!</small><small
+              *ngIf="f['fax'].hasError('serverValidationError')">{{f['fax'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="movil">Movil</label><input type="text" name="movil" formControlName="movil"
+            placeholder="Movil" [ngClass]="{'is-invalid': submitted && f['movil'].errors}"
+            class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['movil'].errors"><small
+              *ngIf="f['movil'].hasError('required')">* El movil es un campo requerido</small><small class="text-danger"
+              *ngIf="f['movil'].hasError('pattern')">El movil no cumple con el patron requerido!</small><small
+              *ngIf="f['movil'].hasError('serverValidationError')">{{f['movil'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="limite_credito">Limite de Credito</label><input type="text"
+            name="limite_credito" formControlName="limite_credito" placeholder="Limite de Credito"
+            [ngClass]="{'is-invalid': submitted && f['limite_credito'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['limite_credito'].errors"><small
+              *ngIf="f['limite_credito'].hasError('required')">* El limite credito es un campo requerido</small><small
+              class="text-danger" *ngIf="f['limite_credito'].hasError('pattern')">El limite credito no cumple con el
+              patron requerido!</small><small
+              *ngIf="f['limite_credito'].hasError('serverValidationError')">{{f['limite_credito'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="fecha_corte">Fecha de Corte</label><input type="text" name="fecha_corte"
+            formControlName="fecha_corte" placeholder="Fecha de Corte"
+            [ngClass]="{'is-invalid': submitted && f['fecha_corte'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['fecha_corte'].errors"><small
+              *ngIf="f['fecha_corte'].hasError('required')">* El fecha de corte es un campo requerido</small><small
+              class="text-danger" *ngIf="f['fecha_corte'].hasError('pattern')">El fecha de corte no cumple con el patron
+              requerido!</small><small
+              *ngIf="f['fecha_corte'].hasError('serverValidationError')">{{f['fecha_corte'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="descto_pago">Codigo Descuento</label><input type="text" name="descto_pago"
+            formControlName="descto_pago" placeholder="Codigo Descuento"
+            [ngClass]="{'is-invalid': submitted && f['descto_pago'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['descto_pago'].errors"><small
+              *ngIf="f['descto_pago'].hasError('required')">* El descuento es un campo requerido</small><small
+              class="text-danger" *ngIf="f['descto_pago'].hasError('pattern')">El descuento no cumple con el patron
+              requerido!</small><small
+              *ngIf="f['descto_pago'].hasError('serverValidationError')">{{f['descto_pago'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="pago_codigo">Codigo Pago</label><input type="text" name="pago_codigo"
+            formControlName="pago_codigo" placeholder="Codigo Pago"
+            [ngClass]="{'is-invalid': submitted && f['pago_codigo'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['pago_codigo'].errors"><small
+              *ngIf="f['pago_codigo'].hasError('required')">* El pago es un campo requerido</small><small
+              class="text-danger" *ngIf="f['pago_codigo'].hasError('pattern')">El pago no cumple con el patron
+              requerido!</small><small
+              *ngIf="f['pago_codigo'].hasError('serverValidationError')">{{f['pago_codigo'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="grup_codigo">Grupo</label><input type="text" name="grup_codigo"
+            formControlName="grup_codigo" placeholder="Grupo"
+            [ngClass]="{'is-invalid': submitted && f['grup_codigo'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['grup_codigo'].errors"><small
+              *ngIf="f['grup_codigo'].hasError('required')">* El grupo es un campo requerido</small><small
+              class="text-danger" *ngIf="f['grup_codigo'].hasError('pattern')">El grupo no cumple con el patron
+              requerido!</small><small
+              *ngIf="f['grup_codigo'].hasError('serverValidationError')">{{f['grup_codigo'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="itbis">ITBIS</label><input type="text" name="itbis" formControlName="itbis"
+            placeholder="ITBIS" [ngClass]="{'is-invalid': submitted && f['itbis'].errors}"
+            class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['itbis'].errors"><small
+              *ngIf="f['itbis'].hasError('required')">* El itbis es un campo requerido</small><small class="text-danger"
+              *ngIf="f['itbis'].hasError('pattern')">El itbis no cumple con el patron requerido!</small><small
+              *ngIf="f['itbis'].hasError('serverValidationError')">{{f['itbis'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="descto">Descuento</label><input type="text" name="descto"
+            formControlName="descto" placeholder="descto" [ngClass]="{'is-invalid': submitted && f['descto'].errors}"
+            class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['descto'].errors"><small
+              *ngIf="f['descto'].hasError('required')">* El descto es un campo requerido</small><small
+              class="text-danger" *ngIf="f['descto'].hasError('pattern')">El descto no cumple con el patron
+              requerido!</small><small
+              *ngIf="f['descto'].hasError('serverValidationError')">{{f['descto'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="mone_codigo">Codigo Moneda</label><input type="text" name="mone_codigo"
+            formControlName="mone_codigo" placeholder="Codigo Moneda"
+            [ngClass]="{'is-invalid': submitted && f['mone_codigo'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['mone_codigo'].errors"><small
+              *ngIf="f['mone_codigo'].hasError('required')">* El mone_codigo es un campo requerido</small><small
+              class="text-danger" *ngIf="f['mone_codigo'].hasError('pattern')">El mone_codigo no cumple con el patron
+              requerido!</small><small
+              *ngIf="f['mone_codigo'].hasError('serverValidationError')">{{f['mone_codigo'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="apertura">Apertura</label><input type="text" name="apertura"
+            formControlName="apertura" placeholder="Apertura"
+            [ngClass]="{'is-invalid': submitted && f['apertura'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['apertura'].errors"><small
+              *ngIf="f['apertura'].hasError('required')">* El apertura es un campo requerido</small><small
+              class="text-danger" *ngIf="f['apertura'].hasError('pattern')">El apertura no cumple con el patron
+              requerido!</small><small
+              *ngIf="f['apertura'].hasError('serverValidationError')">{{f['apertura'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="limite">Limite</label><input type="text" name="limite"
+            formControlName="limite" placeholder="Limite" [ngClass]="{'is-invalid': submitted && f['limite'].errors}"
+            class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['limite'].errors"><small
+              *ngIf="f['limite'].hasError('required')">* El limite es un campo requerido</small><small
+              class="text-danger" *ngIf="f['limite'].hasError('pattern')">El limite no cumple con el patron
+              requerido!</small><small
+              *ngIf="f['limite'].hasError('serverValidationError')">{{f['limite'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="nucf_grupo">Grupo NCF</label><input type="text" name="nucf_grupo"
+            formControlName="nucf_grupo" placeholder="Grupo NCF"
+            [ngClass]="{'is-invalid': submitted && f['nucf_grupo'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['nucf_grupo'].errors"><small
+              *ngIf="f['nucf_grupo'].hasError('required')">* El grupo ncf es un campo requerido</small><small
+              class="text-danger" *ngIf="f['nucf_grupo'].hasError('pattern')">El grupo ncf no cumple con el patron
+              requerido!</small><small
+              *ngIf="f['nucf_grupo'].hasError('serverValidationError')">{{f['nucf_grupo'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="nucf_prefijo">Prefijo NCF</label><input type="text" name="nucf_prefijo"
+            formControlName="nucf_prefijo" placeholder="Prefijo NCF"
+            [ngClass]="{'is-invalid': submitted && f['nucf_prefijo'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['nucf_prefijo'].errors"><small
+              *ngIf="f['nucf_prefijo'].hasError('required')">* El prefijo ncf es un campo requerido</small><small
+              class="text-danger" *ngIf="f['nucf_prefijo'].hasError('pattern')">El prefijo ncf no cumple con el patron
+              requerido!</small><small
+              *ngIf="f['nucf_prefijo'].hasError('serverValidationError')">{{f['nucf_prefijo'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="dgii_tipo">Tipo DGII</label><input type="text" name="dgii_tipo"
+            formControlName="dgii_tipo" placeholder="Tipo DGII"
+            [ngClass]="{'is-invalid': submitted && f['dgii_tipo'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['dgii_tipo'].errors"><small
+              *ngIf="f['dgii_tipo'].hasError('required')">* El tipo dgii es un campo requerido</small><small
+              class="text-danger" *ngIf="f['dgii_tipo'].hasError('pattern')">El tipo dgii no cumple con el patron
+              requerido!</small><small
+              *ngIf="f['dgii_tipo'].hasError('serverValidationError')">{{f['dgii_tipo'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="inve_grupo">Group Inventario</label><input type="text" name="inve_grupo"
+            formControlName="inve_grupo" placeholder="Grupo Inventario"
+            [ngClass]="{'is-invalid': submitted && f['inve_grupo'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['inve_grupo'].errors"><small
+              *ngIf="f['inve_grupo'].hasError('required')">* El grupo inventario es un campo requerido</small><small
+              class="text-danger" *ngIf="f['inve_grupo'].hasError('pattern')">El grupo inventario no cumple con el
+              patron
+              requerido!</small><small
+              *ngIf="f['inve_grupo'].hasError('serverValidationError')">{{f['inve_grupo'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="porc_itbis">Porciento ITBIS</label><input type="text" name="porc_itbis"
+            formControlName="porc_itbis" placeholder="Porciento ITBIS"
+            [ngClass]="{'is-invalid': submitted && f['porc_itbis'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['porc_itbis'].errors"><small
+              *ngIf="f['porc_itbis'].hasError('required')">* El porciento ITBIS es un campo requerido</small><small
+              class="text-danger" *ngIf="f['porc_itbis'].hasError('pattern')">El porciento ITBIS no cumple con el patron
+              requerido!</small><small
+              *ngIf="f['porc_itbis'].hasError('serverValidationError')">{{f['porc_itbis'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="porc_retencion">% Retención</label><input type="text" name="porc_retencion"
+            formControlName="porc_retencion" placeholder="% Retención"
+            [ngClass]="{'is-invalid': submitted && f['porc_retencion'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['porc_retencion'].errors"><small
+              *ngIf="f['porc_retencion'].hasError('required')">* El % retención es un campo requerido</small><small
+              class="text-danger" *ngIf="f['porc_retencion'].hasError('pattern')">El % retención no cumple con el
+              patron requerido!</small><small
+              *ngIf="f['porc_retencion'].hasError('serverValidationError')">{{f['porc_retencion'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="dgii_costo">dgii_costo</label><input type="text" name="dgii_costo"
+            formControlName="dgii_costo" placeholder="dgii_costo"
+            [ngClass]="{'is-invalid': submitted && f['dgii_costo'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['dgii_costo'].errors"><small
+              *ngIf="f['dgii_costo'].hasError('required')">* El dgii_costo es un campo requerido</small><small
+              class="text-danger" *ngIf="f['dgii_costo'].hasError('pattern')">El dgii_costo no cumple con el patron
+              requerido!</small><small
+              *ngIf="f['dgii_costo'].hasError('serverValidationError')">{{f['dgii_costo'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="clas_codigo">clas_codigo</label><input type="text" name="clas_codigo"
+            formControlName="clas_codigo" placeholder="clas_codigo"
+            [ngClass]="{'is-invalid': submitted && f['clas_codigo'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['clas_codigo'].errors"><small
+              *ngIf="f['clas_codigo'].hasError('required')">* El clas_codigo es un campo requerido</small><small
+              class="text-danger" *ngIf="f['clas_codigo'].hasError('pattern')">El clas_codigo no cumple con el patron
+              requerido!</small><small
+              *ngIf="f['clas_codigo'].hasError('serverValidationError')">{{f['clas_codigo'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="dpto_codigo">dpto_codigo</label><input type="text" name="dpto_codigo"
+            formControlName="dpto_codigo" placeholder="dpto_codigo"
+            [ngClass]="{'is-invalid': submitted && f['dpto_codigo'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['dpto_codigo'].errors"><small
+              *ngIf="f['dpto_codigo'].hasError('required')">* El dpto_codigo es un campo requerido</small><small
+              class="text-danger" *ngIf="f['dpto_codigo'].hasError('pattern')">El dpto_codigo no cumple con el patron
+              requerido!</small><small
+              *ngIf="f['dpto_codigo'].hasError('serverValidationError')">{{f['dpto_codigo'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="tipodoc">tipodoc</label><input type="text" name="tipodoc"
+            formControlName="tipodoc" placeholder="tipodoc" [ngClass]="{'is-invalid': submitted && f['tipodoc'].errors}"
+            class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['tipodoc'].errors"><small
+              *ngIf="f['tipodoc'].hasError('required')">* El tipodoc es un campo requerido</small><small
+              class="text-danger" *ngIf="f['tipodoc'].hasError('pattern')">El tipodoc no cumple con el patron
+              requerido!</small><small
+              *ngIf="f['tipodoc'].hasError('serverValidationError')">{{f['tipodoc'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="porc_isr">porc_isr</label><input type="text" name="porc_isr"
+            formControlName="porc_isr" placeholder="porc_isr"
+            [ngClass]="{'is-invalid': submitted && f['porc_isr'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['porc_isr'].errors"><small
+              *ngIf="f['porc_isr'].hasError('required')">* El porc_isr es un campo requerido</small><small
+              class="text-danger" *ngIf="f['porc_isr'].hasError('pattern')">El porc_isr no cumple con el patron
+              requerido!</small><small
+              *ngIf="f['porc_isr'].hasError('serverValidationError')">{{f['porc_isr'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="bcos_cuenta">bcos_cuenta</label><input type="text" name="bcos_cuenta"
+            formControlName="bcos_cuenta" placeholder="bcos_cuenta"
+            [ngClass]="{'is-invalid': submitted && f['bcos_cuenta'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['bcos_cuenta'].errors"><small
+              *ngIf="f['bcos_cuenta'].hasError('required')">* El bcos_cuenta es un campo requerido</small><small
+              class="text-danger" *ngIf="f['bcos_cuenta'].hasError('pattern')">El bcos_cuenta no cumple con el patron
+              requerido!</small><small
+              *ngIf="f['bcos_cuenta'].hasError('serverValidationError')">{{f['bcos_cuenta'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="bcos_codigo">bcos_codigo</label><input type="text" name="bcos_codigo"
+            formControlName="bcos_codigo" placeholder="bcos_codigo"
+            [ngClass]="{'is-invalid': submitted && f['bcos_codigo'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['bcos_codigo'].errors"><small
+              *ngIf="f['bcos_codigo'].hasError('required')">* El bcos_codigo es un campo requerido</small><small
+              class="text-danger" *ngIf="f['bcos_codigo'].hasError('pattern')">El bcos_codigo no cumple con el patron
+              requerido!</small><small
+              *ngIf="f['bcos_codigo'].hasError('serverValidationError')">{{f['bcos_codigo'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="plan_codigo">plan_codigo</label><input type="text" name="plan_codigo"
+            formControlName="plan_codigo" placeholder="plan_codigo"
+            [ngClass]="{'is-invalid': submitted && f['plan_codigo'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['plan_codigo'].errors"><small
+              *ngIf="f['plan_codigo'].hasError('required')">* El plan_codigo es un campo requerido</small><small
+              class="text-danger" *ngIf="f['plan_codigo'].hasError('pattern')">El plan_codigo no cumple con el patron
+              requerido!</small><small
+              *ngIf="f['plan_codigo'].hasError('serverValidationError')">{{f['plan_codigo'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="form-group">
+      <button type="submit" class="btn btn-info">
+        Add Supplier
+      </button>
+    </div>
+  </form>
+</div>

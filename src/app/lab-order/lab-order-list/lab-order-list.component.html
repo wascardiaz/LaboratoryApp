@@ -1,0 +1,158 @@
+<div class="d-flex flex-column" id="content-wrapper">
+    <div id="content">
+        <div class="container-fluid">
+            <h1>Listado de Facturas o Casos de Laboratorio</h1>
+
+            <!-- <div class="example-container mat-elevation-z8">
+    <div class="example-loading-shade" *ngIf="isLoadingResults || isRateLimitReached">
+        <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+        <div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
+            GitHub's API rate limit has been reached. It will be reset in one minute.
+        </div>
+    </div>
+
+    <div class="example-table-container">
+
+        <table mat-table [dataSource]="data" class="example-table" matSort matSortActive="created" matSortDisableClear
+            matSortDirection="desc">
+            <ng-container matColumnDef="number">
+                <th mat-header-cell *matHeaderCellDef>#</th>
+                <td mat-cell *matCellDef="let row">{{row.number}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="title">
+                <th mat-header-cell *matHeaderCellDef>Title</th>
+                <td mat-cell *matCellDef="let row">{{row.title}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="state">
+                <th mat-header-cell *matHeaderCellDef>State</th>
+                <td mat-cell *matCellDef="let row">{{row.state}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="created">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+                    Created
+                </th>
+                <td mat-cell *matCellDef="let row">{{row.created_at | date}}</td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+
+    <mat-paginator [length]="resultsLength" [pageSize]="30" aria-label="Select page of GitHub search results">
+    </mat-paginator>
+</div> -->
+
+
+
+            <mat-card class="mat-elevation-z0">
+                <!-- <mat-form-field>
+            <input matInput type="text" (input)="doFilter(keyFilter.value)" placeholder="Filter" />
+        </mat-form-field> -->
+                <mat-form-field appearance="standard" fxFlex="40%">
+                    <mat-label>Buscar</mat-label>
+                    <input id="search" matInput pattern="/[a-zA-Z0-9-_ ]/" (keyup.esc)="input.value = ''"
+                        placeholder="Ej. Aglutinación" #input autocomplete="off">
+                    <button *ngIf="input.value" matSuffix mat-icon-button aria-label="Clear" (click)="onSearchClear()">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </mat-form-field>
+                <button mat-raised-button color="primary" [routerLink]="['/dashboard/lab-order-add']" type="button"
+                    style="float: right">
+                    + Agregar nueva Orden Analysis
+                </button>
+            </mat-card>
+            <div class="example-container mat-elevation-z0">
+                <div class="example-loading-shade" *ngIf="isLoadingResults || isRateLimitReached">
+                    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+                    <div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
+                        Se alcanzó el límite de velocidad de la API. Se restablecerá en un minuto.
+                    </div>
+                </div>
+
+                <div class="example-table-container">
+                    <table mat-table [dataSource]="data" matSort>
+                        <ng-container matColumnDef="id">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Order ID</th>
+                            <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="patient">
+                            <th mat-header-cell *matHeaderCellDef>Paciente</th>
+                            <td mat-cell *matCellDef="let element">{{ element.patient?.person?.firstName }} {{
+                                element.patient?.person?.lastName }}</td>
+                        </ng-container>
+
+                        <!-- <ng-container matColumnDef="pricePerUnit">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Price</th>
+            <td mat-cell *matCellDef="let element">
+                {{ "Rs. " + element.pricePerUnit + "/" + element.measurementUnit }}
+            </td>
+        </ng-container> -->
+
+                        <ng-container matColumnDef="created">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Analysised On</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{ element.created | date }}
+                            </td>
+                        </ng-container>
+
+                        <!-- <ng-container matColumnDef="distributorName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Cliente</th>
+            <td mat-cell *matCellDef="let element">
+                {{ element.distributorName }}
+            </td>
+        </ng-container> -->
+
+                        <!-- <ng-container matColumnDef="quantity">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                Quantity
+            </th>
+            <td mat-cell *matCellDef="let element">
+                {{ element.quantity + " " + element.measurementUnit + "s" }}
+            </td>
+        </ng-container> -->
+
+                        <ng-container matColumnDef="orderStatus">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Analysis Status</th>
+                            <td mat-cell *matCellDef="let element">
+                                {{ element.orderStatus }}
+                                <!-- <button *ngIf="element.orderStatus === 'Processing'" mat-icon-button color="primary"
+                        (click)="updateStatus(element)">
+                        <mat-icon>edit</mat-icon>
+                    </button> -->
+                            </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="actions">
+                            <th mat-header-cell *matHeaderCellDef>Update</th>
+                            <td mat-cell *matCellDef="let element">
+                                <button mat-icon-button color="warn" (click)="updateAnalysis(element.id)">
+                                    <mat-icon>edit</mat-icon>
+                                </button>
+                            </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+                        <tr class="mat-row" *matNoDataRow>
+                            <td class="mat-cell" colspan="7">No hay datos que coincidan con el filtro "{{input.value}}"
+                            </td>
+                        </tr>
+                    </table>
+                    <!-- <mat-paginator [length]="resultsLength" [pageSize]="1" aria-label="Select page of GitHub search results">
+        </mat-paginator> -->
+                    <mat-paginator [length]="resultsLength" [pageSize]="options.size"
+                        [pageSizeOptions]="pageSizeOptions" aria-label="Select page">
+                    </mat-paginator>
+                    <!-- <mat-paginator [length]="resultsLength" [pageSize]='options.size' [pageSizeOptions]="[5, 10, 20]"
+        showFirstLastButtons [pageSize]="5"></mat-paginator> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

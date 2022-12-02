@@ -1,0 +1,181 @@
+<div [formGroup]="personForm">
+    <input type="number" hidden formControlName="id" name="id">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Tipo Documento</label>
+
+                <select name="documentTypeId" class="form-control form-control-sm" formControlName="documentTypeId"
+                    placeholder="documentTypeId" name="documentTypeId" (change)="onDocuTypeSectedChange($event)"
+                    [ngClass]="{'is-invalid': fp['documentTypeId'].errors}">
+                    <option value=" 0">-Select-</option>
+                    <option *ngFor="let docType of personDocuTypeSource" [value]="docType.id">
+                        {{docType.name}}
+                    </option>
+                </select>
+                <div class="invalid-feedback" *ngIf="fp['documentTypeId'].errors">
+                    <div *ngIf="fp['documentTypeId'].hasError('required')">* Required
+                    </div>
+                    <div *ngIf="fp['documentTypeId'].hasError('serverValidationError')">
+                        {{fp['documentTypeId'].errors['serverValidationError']}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Documento</label>
+
+                <input type="text" class="form-control form-control-sm" formControlName="document"
+                    placeholder="document" name="document" [ngClass]="{'is-invalid': fp['document'].errors}" #box
+                    (keyup.enter)="onEnterDocument(box.value)" (blur)="onEnterDocument(box.value)"
+                    (keyup)="onEnterDocument(box.value)" />
+                <div class="invalid-feedback" *ngIf="fp['document'].errors">
+                    <div *ngIf="fp['document'].hasError('required')">* Required</div>
+                    <div *ngIf="fp['document'].hasError('serverValidationError')">
+                        {{fp['document'].errors['serverValidationError']}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="dateOfBirth"> Date of Birth <br /></label>
+                <input class="form-control form-control-sm" type="Date" name="dateOfBirth" formControlName="dateOfBirth"
+                    [ngClass]="{'is-invalid': fp['dateOfBirth'].errors}" />
+                <div class="invalid-feedback" *ngIf="fp['dateOfBirth'].errors">
+                    <div *ngIf="fp['dateOfBirth'].hasError('required')">* Required</div>
+                    <div *ngIf="fp['dateOfBirth'].hasError('serverValidationError')">
+                        {{fp['dateOfBirth'].errors['serverValidationError'] }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                <label for="firstName"> First Name <br /></label>
+                <input class="form-control form-control-sm" formControlName="firstName" type="text"
+                    placeholder="First Name" name="firstName" [ngClass]="{'is-invalid': fp['firstName'].errors}" />
+                <div class="invalid-feedback" *ngIf="fp['firstName'].errors">
+                    <div *ngIf="fp['firstName'].hasError('required')">* Required</div>
+                    <div *ngIf="fp['firstName'].hasError('serverValidationError')">
+                        {{fp['firstName'].errors['serverValidationError'] }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                <label for="lastName"> Last Name </label>
+                <input class="form-control form-control-sm" formControlName="lastName" type="text"
+                    placeholder="Last Name" name="lastName" [ngClass]="{'is-invalid': fp['lastName'].errors}" />
+                <div class="invalid-feedback" *ngIf="fp['lastName'].errors">
+                    <div *ngIf="fp['lastName'].hasError('required')">* Required</div>
+                    <div *ngIf="fp['lastName'].hasError('serverValidationError')">
+                        {{fp['lastName'].errors['serverValidationError'] }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="form-group"><label for="nickname"></label>
+
+                <input type="text" class="form-control form-control-sm" formControlName="nickname"
+                    placeholder="nickname" name="nickname" [ngClass]="{'is-invalid': fp['nickname'].errors}" />
+                <div class="invalid-feedback" *ngIf="fp['nickname'].errors">
+                    <div *ngIf="fp['nickname'].hasError('required')">* Required</div>
+                    <div *ngIf="fp['nickname'].hasError('serverValidationError')">
+                        {{fp['nickname'].errors['serverValidationError']}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                <label>Genero</label>
+
+                <select name="genderId" class="form-control form-control-sm" formControlName="genderId"
+                    placeholder="genderId" name="genderId" [ngClass]="{'is-invalid': fp['genderId'].errors}">
+                    <option value=" 0">-Select-</option>
+                    <option *ngFor="let gender of personGenderSouruce" [value]="gender.id">
+                        {{gender.name}}
+                    </option>
+                </select>
+                <div class="invalid-feedback" *ngIf="fp['genderId'].errors">
+                    <div *ngIf="fp['genderId'].hasError('required')">* Required</div>
+                    <div *ngIf="fp['genderId'].hasError('serverValidationError')">
+                        {{fp['genderId'].errors['serverValidationError']}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Profesion</label>
+
+                <select name="professionId" class="form-control form-control-sm" formControlName="professionId"
+                    placeholder="professionId" name="professionId"
+                    [ngClass]="{'is-invalid': fp['professionId'].errors}">
+                    <option value=" 0">-Select-</option>
+                    <option *ngFor="let profesion of personProfessions" [value]="profesion.id">
+                        {{profesion.name}}
+                    </option>
+                </select>
+                <div class="invalid-feedback" *ngIf="fp['professionId'].errors">
+                    <div *ngIf="fp['professionId'].hasError('required')">* Required</div>
+                    <div *ngIf="fp['professionId'].hasError('serverValidationError')">
+                        {{fp['professionId'].errors['serverValidationError']}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                <label>Estado Civil</label>
+
+                <select name="civilStateId" class="form-control form-control-sm" formControlName="civilStateId"
+                    placeholder="civilStateId" name="civilStateId"
+                    [ngClass]="{'is-invalid': fp['civilStateId'].errors}">
+                    <option value=" 0">-Select-</option>
+                    <option *ngFor="let civilSate of civilStateSource" [value]="civilSate.id">
+                        {{civilSate.name}}
+                    </option>
+                </select>
+                <div class="invalid-feedback" *ngIf="fp['civilStateId'].errors">
+                    <div *ngIf="fp['civilStateId'].hasError('required')">* Required</div>
+                    <div *ngIf="fp['civilStateId'].hasError('serverValidationError')">
+                        {{fp['civilStateId'].errors['serverValidationError']}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="phoneNo"> Phone No <br /></label>
+                <input class="form-control form-control-sm" type="text" placeholder="Enter Phone No." name="phoneNo"
+                    formControlName="phoneNo" [ngClass]="{'is-invalid': fp['phoneNo'].errors}" />
+                <div class="invalid-feedback" *ngIf="fp['phoneNo'].errors">
+                    <div *ngIf="fp['phoneNo'].hasError('required')">* Required</div>
+                    <div *ngIf="fp['phoneNo'].hasError('serverValidationError')">
+                        {{fp['phoneNo'].errors['serverValidationError'] }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="form-group">
+                <label for="email"> Email <br /></label>
+                <input class="form-control form-control-sm" type="text" placeholder="Email" name="email"
+                    formControlName="email" [ngClass]="{'is-invalid': fp['email'].errors}" />
+                <div class="invalid-feedback" *ngIf="fp['email'].errors">
+                    <div *ngIf="fp['email'].hasError('required')">* Required</div>
+                    <div *ngIf="fp['email'].hasError('serverValidationError')">
+                        {{fp['email'].errors['serverValidationError'] }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <p [style.text-decoration]="lineThrough">Item: {{person?.value | json}}</p> -->
+<button type="button" class="btn btn-sm" (click)="addNewItem()">Guardar Informacion Personal!</button>

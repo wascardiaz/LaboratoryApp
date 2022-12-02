@@ -1,0 +1,35 @@
+import { HTTP_INTERCEPTORS } from "@angular/common/http";
+import { ErrorHandler } from "@angular/core";
+import { JWT_OPTIONS } from '@auth0/angular-jwt';
+import { GlobalErrorHandler } from "../providers/global-error-handler";
+import { AppInitializer } from "./app.initializer";
+import { HttpErrorInterceptor } from "./http-error.interceptor";
+import { JwtTokenInterceptor } from "./jwt-token.interceptor";
+
+export const httpInterceptors = [
+  AppInitializer,
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: JwtTokenInterceptor,
+    multi: true,
+  },
+  {
+    provide: JWT_OPTIONS,
+    useValue: JWT_OPTIONS,
+  },
+  {
+    provide: ErrorHandler,
+    useClass: GlobalErrorHandler,
+  },
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: HttpErrorInterceptor,
+    multi: true,
+  },
+  // Breaks Code for now 
+  // {
+  //   provide: HTTP_INTERCEPTORS,
+  //   useClass: CorsInterceptor,
+  //   multi: true,
+  // },
+];

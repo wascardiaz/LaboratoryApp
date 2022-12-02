@@ -1,0 +1,52 @@
+<h4 class="display-4">Order Food Item</h4>
+<hr>
+<form #form="ngForm" autocomplete="off" (submit)="OnSubmit(form)">
+    <input type="hidden" name="id" #id="ngModel" [(ngModel)]="formData.id">
+    <input type="hidden" name="orderId" #orderId="ngModel" [(ngModel)]="formData.orderId">
+    <input type="hidden" name="itemName" #itemName="ngModel" [(ngModel)]="formData.itemName">
+    <div class="row g-3">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Food Item</label>
+                <div class="input-group">
+                    <select name="itemId" #itemId="ngModel" [(ngModel)]="formData.itemId" class="form-control"
+                        (change)="UpdatePrice($event.target)" [class.is-invalid]="!isValid && formData.itemId ==0">
+                        <option value="0">-Select-</option>
+                        <option *ngFor="let item of itemList" [value]="item.id">{{item.name}}</option>
+                    </select>
+                    <button class="btn btn-outline-secondary" type="button" id="button-addon2">(+)</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Price</label>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">$</span>
+                    <input name="price" #price="ngModel" [(ngModel)]="formData.price" class="form-control" readonly>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Quantity</label>
+                <input name="qty" #qty="ngModel" [(ngModel)]="formData.qty" class="form-control"
+                    (keyup)="UpdateTotal()" [class.is-invalid]="!isValid && formData.qty ==0">
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Total</label>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">$</span>
+                    <input name="total" #total="ngModel" [(ngModel)]="formData.total" class="form-control" readonly>
+                </div>
+            </div>
+        </div>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button type="submit" class="btn btn-dark me-md-2"><i class="fa fa-database"></i> Submit</button>
+            <button type="button" class="btn btn-outline-dark" [mat-dialog-close]><i class="fa fa-times"></i>
+                Close</button>
+        </div>
+    </div>
+</form>

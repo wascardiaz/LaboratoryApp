@@ -1,0 +1,129 @@
+<h1>Ordenes</h1>
+<div class="spinner-container">
+    <div class="spinner-border text-dark" *ngIf="loadingService.loading"></div>
+</div>
+<div class="mat-elevation-z8">
+    <mat-card class="mat-elevation-z0">
+        <mat-form-field>
+            <input matInput type="text" #keyFilter placeholder="Filter" />
+        </mat-form-field>
+        <!-- <button mat-raised-button color="primary" [routerLink]="['/dashboard/users/add']" type="button"
+            style="float: right">
+            + Agregar Usuario
+        </button> -->
+        <a mat-raised-button color="primary" class="btn btn-sm btn-success text-white" routerLink="/orders/order"
+            style="float: right"><i class="fa fa-plus"></i> Create Order</a>
+    </mat-card>
+    <form #form="ngForm" autocomplete="off" *ngIf="orderService.formData" (submit)="OnSubmit(form)" class="container py-3">
+        <input type="hidden" name="id" #id="ngModel" [(ngModel)]="orderService.formData.id">
+        <div class="row g-3">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Order No.</label>
+                    <div class="input-group">
+                        <span class="input-group-text" id="basic-addon1">#</span>
+                        <input name="id" #id="ngModel" [(ngModel)]="orderService.formData.id"
+                            class="form-control form-control-sm" readonly>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>Customer ID</label>
+                    <div class="input-group">
+                        <span class="input-group-text">#</span>
+                        <input name="customerId" #customerId="ngModel" [(ngModel)]="orderService.formData.customerId"
+                            class="form-control form-control-sm"
+                            [class.is-invalid]="!isValid && orderService.formData.customerId ==0">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Customer</label>
+                    <div class="input-group">
+                        <select name="customerId" #customerId="ngModel" [(ngModel)]="orderService.formData.customerId"
+                            class="form-control form-control-sm"
+                            [class.is-invalid]="!isValid && orderService.formData.customerId ==0">
+                            <option value="0">-Select-</option>
+                            <option *ngFor="let customer of customerList" [value]="customer.id">{{customer.cust_descripcion}}
+                            </option>
+                        </select>
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">(+)</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Payment Method</label>
+                    <select name="pMethod" #pMethod="ngModel" [(ngModel)]="orderService.formData.pMethod"
+                        class="form-control form-control-sm">
+                        <option value="0">-Select-</option>
+                        <option value="1">method 1</option>
+                        <option value="2">method 2</option>
+                        <option value="3">method 3</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Grand Total</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">$</span>
+                        <input name="total" #total="ngModel" [(ngModel)]="orderService.formData.total"
+                            class="form-control form-control-sm" readonly>
+                    </div>
+                </div>
+            </div>
+            <!-- Order Items table -->
+            <table class="table table-sm">
+                <thead class="table-light">
+                    <th scope="col">Item</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Total</th>
+                    <th scope="col"><a class="btn btn-sm btn-success text-white"
+                            (click)="OrderItemAddEdit(null, orderService.formData.id)"><i class="fa fa-plus"></i>Add
+                            Item</a></th>
+                </thead>
+                <tbody class="table-group-divider">
+                    <tr *ngIf="!orderService.orderItems || !orderService.orderItems.length"
+                        [class.text-danger]="!isValid && orderService.orderItems">
+                        <td class="font-italic text-center" colspan="5">
+                            Not item selected for this order.
+                        </td>
+                    </tr>
+                    <tr *ngFor="let item of orderService.orderItems; let i = index">
+                        <td>{{item.itemName}}</td>
+                        <td>{{item.price | number:'1.2-2'}}</td>
+                        <td>{{item.qty}}</td>
+                        <td>{{item.total | number:'1.2-2'}}</td>
+                        <td>
+                            <a class="btn btn-sm btn-info text-white"
+                                (click)="OrderItemAddEdit(i, orderService.formData.id)"><i class="fa fa-pencil"></i></a>
+                            <a class="btn btn-sm btn-danger text-white ml-1" (click)="onOrderItemDelete(item.id,i)"><i
+                                    class="fa fa-trash"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <th scope="col" colspan="3">Total</th>
+                    <th scope="col">
+                        <div class="form-group">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text">$</span>
+                                <input name="total" #total="ngModel" [(ngModel)]="orderService.formData.total"
+                                    class="form-control form-control-sm" readonly>
+                            </div>
+                        </div>
+                    </th>
+                    <th scope="col"></th>
+                </tfoot>
+            </table>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button type="submit" class="btn btn-dark me-md-2"><i class="fa fa-database"></i> Submit</button>
+                <a routerLink="/orders" class="btn btn-outline-dark"><i class="fa fa-table"></i>View Orders</a>
+            </div>
+        </div>
+    </form>
+</div>

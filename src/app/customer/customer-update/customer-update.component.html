@@ -1,0 +1,720 @@
+<h2 mat-dialog-title>Detalles del Cliente</h2>
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="customerForm">
+    <!-- Hidden filed -->
+    <input type="number" hidden formControlName="id" name="id">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group"><label for="cust_descripcion">cust_descripcion</label> <input type="text"
+            name="cust_descripcion" formControlName="cust_descripcion" placeholder="cust_descripcion"
+            [ngClass]="{'is-invalid': submitted && f['cust_descripcion'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['cust_descripcion'].errors">
+            <small *ngIf="f['cust_descripcion'].hasError('required')">* El nombre es un campo obligatorio </small>
+            <small class="text-danger" *ngIf="f['cust_descripcion'].hasError('pattern')">¡La primera letra debe ser
+              mayúscula! El nombre debe tener un mínimo de 5 caracteres.</small>
+            <small *ngIf="f['cust_descripcion'].hasError('serverValidationError')">
+              {{f['cust_descripcion'].errors['serverValidationError']}}</small>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="nucf_grupo">nucf_grupo</label> <input type="text" name="nucf_grupo"
+            formControlName="nucf_grupo" placeholder="nucf_grupo"
+            [ngClass]="{'is-invalid': submitted && f['nucf_grupo'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['nucf_grupo'].errors">
+            <div *ngIf="f['nucf_grupo'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['nucf_grupo'].hasError('serverValidationError')">
+              {{f['nucf_grupo'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="nucf_lote">nucf_lote</label> <input type="text" name="nucf_lote"
+            formControlName="nucf_lote" placeholder="nucf_lote"
+            [ngClass]="{'is-invalid': submitted && f['nucf_lote'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['nucf_lote'].errors">
+            <div *ngIf="f['nucf_lote'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['nucf_lote'].hasError('serverValidationError')">
+              {{f['nucf_lote'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="cust_contacto">cust_contacto</label> <input type="text" name="cust_contacto"
+            formControlName="cust_contacto" placeholder="cust_contacto"
+            [ngClass]="{'is-invalid': submitted && f['cust_contacto'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['cust_contacto'].errors">
+            <div *ngIf="f['cust_contacto'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['cust_contacto'].hasError('serverValidationError')">
+              {{f['cust_contacto'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="cust_website">cust_website</label> <input type="text" name="cust_website"
+            formControlName="cust_website" placeholder="cust_website"
+            [ngClass]="{'is-invalid': submitted && f['cust_website'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['cust_website'].errors">
+            <div *ngIf="f['cust_website'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['cust_website'].hasError('serverValidationError')">
+              {{f['cust_website'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="cust_api_url">cust_api_url</label> <input type="text" name="cust_api_url"
+            formControlName="cust_api_url" placeholder="cust_api_url"
+            [ngClass]="{'is-invalid': submitted && f['cust_api_url'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['cust_api_url'].errors">
+            <div *ngIf="f['cust_api_url'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['cust_api_url'].hasError('serverValidationError')">
+              {{f['cust_api_url'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="cust_email">cust_email</label> <input type="text" name="cust_email"
+            formControlName="cust_email" placeholder="cust_email"
+            [ngClass]="{'is-invalid': submitted && f['cust_email'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['cust_email'].errors">
+            <div *ngIf="f['cust_email'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['cust_email'].hasError('serverValidationError')">
+              {{f['cust_email'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="cust_documtos">cust_documtos</label> <input type="text" name="cust_documtos"
+            formControlName="cust_documtos" placeholder="cust_documtos"
+            [ngClass]="{'is-invalid': submitted && f['cust_documtos'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['cust_documtos'].errors">
+            <div *ngIf="f['cust_documtos'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['cust_documtos'].hasError('serverValidationError')">
+              {{f['cust_documtos'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="cust_autorizacion">cust_autorizacion</label> <input type="text"
+            name="cust_autorizacion" formControlName="cust_autorizacion" placeholder="cust_autorizacion"
+            [ngClass]="{'is-invalid': submitted && f['cust_autorizacion'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['cust_autorizacion'].errors">
+            <div *ngIf="f['cust_autorizacion'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['cust_autorizacion'].hasError('serverValidationError')">
+              {{f['cust_autorizacion'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="cust_envios">cust_envios</label> <input type="text" name="cust_envios"
+            formControlName="cust_envios" placeholder="cust_envios"
+            [ngClass]="{'is-invalid': submitted && f['cust_envios'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['cust_envios'].errors">
+            <div *ngIf="f['cust_envios'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['cust_envios'].hasError('serverValidationError')">
+              {{f['cust_envios'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="cust_formato">cust_formato</label> <input type="text" name="cust_formato"
+            formControlName="cust_formato" placeholder="cust_formato"
+            [ngClass]="{'is-invalid': submitted && f['cust_formato'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['cust_formato'].errors">
+            <div *ngIf="f['cust_formato'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['cust_formato'].hasError('serverValidationError')">
+              {{f['cust_formato'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="cust_medcmtos">cust_medcmtos</label> <input type="text" name="cust_medcmtos"
+            formControlName="cust_medcmtos" placeholder="cust_medcmtos"
+            [ngClass]="{'is-invalid': submitted && f['cust_medcmtos'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['cust_medcmtos'].errors">
+            <div *ngIf="f['cust_medcmtos'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['cust_medcmtos'].hasError('serverValidationError')">
+              {{f['cust_medcmtos'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="cust_cirugia">cust_cirugia</label> <input type="text" name="cust_cirugia"
+            formControlName="cust_cirugia" placeholder="cust_cirugia"
+            [ngClass]="{'is-invalid': submitted && f['cust_cirugia'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['cust_cirugia'].errors">
+            <div *ngIf="f['cust_cirugia'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['cust_cirugia'].hasError('serverValidationError')">
+              {{f['cust_cirugia'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="cust_direccion">cust_direccion</label> <input type="text"
+            name="cust_direccion" formControlName="cust_direccion" placeholder="cust_direccion"
+            [ngClass]="{'is-invalid': submitted && f['cust_direccion'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['cust_direccion'].errors">
+            <div *ngIf="f['cust_direccion'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['cust_direccion'].hasError('serverValidationError')">
+              {{f['cust_direccion'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="cust_lug_tipo">cust_lug_tipo</label> <input type="text" name="cust_lug_tipo"
+            formControlName="cust_lug_tipo" placeholder="cust_lug_tipo"
+            [ngClass]="{'is-invalid': submitted && f['cust_lug_tipo'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['cust_lug_tipo'].errors">
+            <div *ngIf="f['cust_lug_tipo'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['cust_lug_tipo'].hasError('serverValidationError')">
+              {{f['cust_lug_tipo'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="cust_lug_nombre">cust_lug_nombre</label> <input type="text"
+            name="cust_lug_nombre" formControlName="cust_lug_nombre" placeholder="cust_lug_nombre"
+            [ngClass]="{'is-invalid': submitted && f['cust_lug_nombre'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['cust_lug_nombre'].errors">
+            <div *ngIf="f['cust_lug_nombre'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['cust_lug_nombre'].hasError('serverValidationError')">
+              {{f['cust_lug_nombre'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="cust_lug_numero">cust_lug_numero</label> <input type="text"
+            name="cust_lug_numero" formControlName="cust_lug_numero" placeholder="cust_lug_numero"
+            [ngClass]="{'is-invalid': submitted && f['cust_lug_numero'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['cust_lug_numero'].errors">
+            <div *ngIf="f['cust_lug_numero'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['cust_lug_numero'].hasError('serverValidationError')">
+              {{f['cust_lug_numero'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="cust_lug_apto">cust_lug_apto</label> <input type="text" name="cust_lug_apto"
+            formControlName="cust_lug_apto" placeholder="cust_lug_apto"
+            [ngClass]="{'is-invalid': submitted && f['cust_lug_apto'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['cust_lug_apto'].errors">
+            <div *ngIf="f['cust_lug_apto'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['cust_lug_apto'].hasError('serverValidationError')">
+              {{f['cust_lug_apto'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="sect_codigo">sect_codigo</label> <input type="text" name="sect_codigo"
+            formControlName="sect_codigo" placeholder="sect_codigo"
+            [ngClass]="{'is-invalid': submitted && f['sect_codigo'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['sect_codigo'].errors">
+            <div *ngIf="f['sect_codigo'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['sect_codigo'].hasError('serverValidationError')">
+              {{f['sect_codigo'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="ciud_codigo">ciud_codigo</label> <input type="text" name="ciud_codigo"
+            formControlName="ciud_codigo" placeholder="ciud_codigo"
+            [ngClass]="{'is-invalid': submitted && f['ciud_codigo'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['ciud_codigo'].errors">
+            <div *ngIf="f['ciud_codigo'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['ciud_codigo'].hasError('serverValidationError')">
+              {{f['ciud_codigo'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="cust_telefono">cust_telefono</label> <input type="text" name="cust_telefono"
+            formControlName="cust_telefono" placeholder="cust_telefono" pattern="[7-9][0-9]{9}"
+            [ngClass]="{'is-invalid': submitted && f['cust_telefono'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['cust_telefono'].errors">
+            <div *ngIf="f['cust_telefono'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['cust_telefono'].hasError('serverValidationError')">
+              {{f['cust_telefono'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="cust_fax">cust_fax</label> <input type="text" name="cust_fax"
+            formControlName="cust_fax" placeholder="cust_fax" pattern="[7-9][0-9]{9}"
+            [ngClass]="{'is-invalid': submitted && f['cust_fax'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['cust_fax'].errors">
+            <div *ngIf="f['cust_fax'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['cust_fax'].hasError('serverValidationError')">
+              {{f['cust_fax'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="cust_celular">cust_celular</label> <input type="text" name="cust_celular"
+            formControlName="cust_celular" placeholder="cust_celular" pattern="[7-9][0-9]{9}"
+            [ngClass]="{'is-invalid': submitted && f['cust_celular'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['cust_celular'].errors">
+            <div *ngIf="f['cust_celular'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['cust_celular'].hasError('serverValidationError')">
+              {{f['cust_celular'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="cust_beeper">cust_beeper</label> <input type="text" name="cust_beeper"
+            formControlName="cust_beeper" placeholder="cust_beeper" pattern="[7-9][0-9]{9}"
+            [ngClass]="{'is-invalid': submitted && f['cust_beeper'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['cust_beeper'].errors">
+            <div *ngIf="f['cust_beeper'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['cust_beeper'].hasError('serverValidationError')">
+              {{f['cust_beeper'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="cust_contrato">cust_contrato</label> <input type="text" name="cust_contrato"
+            formControlName="cust_contrato" placeholder="cust_contrato"
+            [ngClass]="{'is-invalid': submitted && f['cust_contrato'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['cust_contrato'].errors">
+            <div *ngIf="f['cust_contrato'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['cust_contrato'].hasError('serverValidationError')">
+              {{f['cust_contrato'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="cust_limite">cust_limite</label> <input type="text" name="cust_limite"
+            formControlName="cust_limite" placeholder="cust_limite"
+            [ngClass]="{'is-invalid': submitted && f['cust_limite'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['cust_limite'].errors">
+            <div *ngIf="f['cust_limite'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['cust_limite'].hasError('serverValidationError')">
+              {{f['cust_limite'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="cust_ini_contrato">cust_ini_contrato</label> <input type="text"
+            name="cust_ini_contrato" formControlName="cust_ini_contrato" placeholder="cust_ini_contrato"
+            [ngClass]="{'is-invalid': submitted && f['cust_ini_contrato'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['cust_ini_contrato'].errors">
+            <div *ngIf="f['cust_ini_contrato'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['cust_ini_contrato'].hasError('serverValidationError')">
+              {{f['cust_ini_contrato'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="cust_fin_contrato">cust_fin_contrato</label> <input type="text"
+            name="cust_fin_contrato" formControlName="cust_fin_contrato" placeholder="cust_fin_contrato"
+            [ngClass]="{'is-invalid': submitted && f['cust_fin_contrato'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['cust_fin_contrato'].errors">
+            <div *ngIf="f['cust_fin_contrato'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['cust_fin_contrato'].hasError('serverValidationError')">
+              {{f['cust_fin_contrato'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="cust_fecha_corte">cust_fecha_corte</label> <input type="text"
+            name="cust_fecha_corte" formControlName="cust_fecha_corte" placeholder="cust_fecha_corte"
+            [ngClass]="{'is-invalid': submitted && f['cust_fecha_corte'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['cust_fecha_corte'].errors">
+            <div *ngIf="f['cust_fecha_corte'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['cust_fecha_corte'].hasError('serverValidationError')">
+              {{f['cust_fecha_corte'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="cust_porc_descto">cust_porc_descto</label> <input type="text"
+            name="cust_porc_descto" formControlName="cust_porc_descto" placeholder="cust_porc_descto"
+            [ngClass]="{'is-invalid': submitted && f['cust_porc_descto'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['cust_porc_descto'].errors">
+            <div *ngIf="f['cust_porc_descto'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['cust_porc_descto'].hasError('serverValidationError')">
+              {{f['cust_porc_descto'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="pago_codigo">pago_codigo</label> <input type="text" name="pago_codigo"
+            formControlName="pago_codigo" placeholder="pago_codigo"
+            [ngClass]="{'is-invalid': submitted && f['pago_codigo'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['pago_codigo'].errors">
+            <div *ngIf="f['pago_codigo'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['pago_codigo'].hasError('serverValidationError')">
+              {{f['pago_codigo'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="cust_rnc">cust_rnc</label> <input type="text" name="cust_rnc"
+            formControlName="cust_rnc" placeholder="cust_rnc"
+            [ngClass]="{'is-invalid': submitted && f['cust_rnc'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['cust_rnc'].errors">
+            <div *ngIf="f['cust_rnc'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['cust_rnc'].hasError('serverValidationError')">
+              {{f['cust_rnc'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="ctas_numero">ctas_numero</label> <input type="text" name="ctas_numero"
+            formControlName="ctas_numero" placeholder="ctas_numero"
+            [ngClass]="{'is-invalid': submitted && f['ctas_numero'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['ctas_numero'].errors">
+            <div *ngIf="f['ctas_numero'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['ctas_numero'].hasError('serverValidationError')">
+              {{f['ctas_numero'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="grup_codigo">grup_codigo</label> <input type="text" name="grup_codigo"
+            formControlName="grup_codigo" placeholder="grup_codigo"
+            [ngClass]="{'is-invalid': submitted && f['grup_codigo'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['grup_codigo'].errors">
+            <div *ngIf="f['grup_codigo'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['grup_codigo'].hasError('serverValidationError')">
+              {{f['grup_codigo'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="cust_comentario">cust_comentario</label> <input type="text"
+            name="cust_comentario" formControlName="cust_comentario" placeholder="cust_comentario"
+            [ngClass]="{'is-invalid': submitted && f['cust_comentario'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['cust_comentario'].errors">
+            <div *ngIf="f['cust_comentario'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['cust_comentario'].hasError('serverValidationError')">
+              {{f['cust_comentario'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="cust_estatus">cust_estatus</label> <input type="text" name="cust_estatus"
+            formControlName="cust_estatus" placeholder="cust_estatus"
+            [ngClass]="{'is-invalid': submitted && f['cust_estatus'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['cust_estatus'].errors">
+            <div *ngIf="f['cust_estatus'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['cust_estatus'].hasError('serverValidationError')">
+              {{f['cust_estatus'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="cust_referencia">cust_referencia</label> <input type="text"
+            name="cust_referencia" formControlName="cust_referencia" placeholder="cust_referencia"
+            [ngClass]="{'is-invalid': submitted && f['cust_referencia'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['cust_referencia'].errors">
+            <div *ngIf="f['cust_referencia'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['cust_referencia'].hasError('serverValidationError')">
+              {{f['cust_referencia'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="naci_codigo">naci_codigo</label> <input type="text" name="naci_codigo"
+            formControlName="naci_codigo" placeholder="naci_codigo"
+            [ngClass]="{'is-invalid': submitted && f['naci_codigo'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['naci_codigo'].errors">
+            <div *ngIf="f['naci_codigo'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['naci_codigo'].hasError('serverValidationError')">
+              {{f['naci_codigo'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="cust_web_site">cust_web_site</label> <input type="text" name="cust_web_site"
+            formControlName="cust_web_site" placeholder="cust_web_site"
+            [ngClass]="{'is-invalid': submitted && f['cust_web_site'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['cust_web_site'].errors">
+            <div *ngIf="f['cust_web_site'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['cust_web_site'].hasError('serverValidationError')">
+              {{f['cust_web_site'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="cust_local">cust_local</label> <input type="text" name="cust_local"
+            formControlName="cust_local" placeholder="cust_local"
+            [ngClass]="{'is-invalid': submitted && f['cust_local'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['cust_local'].errors">
+            <div *ngIf="f['cust_local'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['cust_local'].hasError('serverValidationError')">
+              {{f['cust_local'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="ctas_debito">ctas_debito</label> <input type="text" name="ctas_debito"
+            formControlName="ctas_debito" placeholder="ctas_debito"
+            [ngClass]="{'is-invalid': submitted && f['ctas_debito'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['ctas_debito'].errors">
+            <div *ngIf="f['ctas_debito'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['ctas_debito'].hasError('serverValidationError')">
+              {{f['ctas_debito'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="ctas_credito">ctas_credito</label> <input type="text" name="ctas_credito"
+            formControlName="ctas_credito" placeholder="ctas_credito"
+            [ngClass]="{'is-invalid': submitted && f['ctas_credito'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['ctas_credito'].errors">
+            <div *ngIf="f['ctas_credito'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['ctas_credito'].hasError('serverValidationError')">
+              {{f['ctas_credito'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="ctas_itbis">ctas_itbis</label> <input type="text" name="ctas_itbis"
+            formControlName="ctas_itbis" placeholder="ctas_itbis"
+            [ngClass]="{'is-invalid': submitted && f['ctas_itbis'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['ctas_itbis'].errors">
+            <div *ngIf="f['ctas_itbis'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['ctas_itbis'].hasError('serverValidationError')">
+              {{f['ctas_itbis'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="ctas_descto">ctas_descto</label> <input type="text" name="ctas_descto"
+            formControlName="ctas_descto" placeholder="ctas_descto"
+            [ngClass]="{'is-invalid': submitted && f['ctas_descto'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['ctas_descto'].errors">
+            <div *ngIf="f['ctas_descto'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['ctas_descto'].hasError('serverValidationError')">
+              {{f['ctas_descto'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="ctas_retencion">ctas_retencion</label> <input type="text"
+            name="ctas_retencion" formControlName="ctas_retencion" placeholder="ctas_retencion"
+            [ngClass]="{'is-invalid': submitted && f['ctas_retencion'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['ctas_retencion'].errors">
+            <div *ngIf="f['ctas_retencion'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['ctas_retencion'].hasError('serverValidationError')">
+              {{f['ctas_retencion'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="cust_tipo">cust_tipo</label> <input type="text" name="cust_tipo"
+            formControlName="cust_tipo" placeholder="cust_tipo"
+            [ngClass]="{'is-invalid': submitted && f['cust_tipo'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['cust_tipo'].errors">
+            <div *ngIf="f['cust_tipo'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['cust_tipo'].hasError('serverValidationError')">
+              {{f['cust_tipo'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="cust_movil">cust_movil</label> <input type="text" name="cust_movil"
+            formControlName="cust_movil" placeholder="cust_movil"
+            [ngClass]="{'is-invalid': submitted && f['cust_movil'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['cust_movil'].errors">
+            <div *ngIf="f['cust_movil'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['cust_movil'].hasError('serverValidationError')">
+              {{f['cust_movil'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="cust_oficina">cust_oficina</label> <input type="text" name="cust_oficina"
+            formControlName="cust_oficina" placeholder="cust_oficina"
+            [ngClass]="{'is-invalid': submitted && f['cust_oficina'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['cust_oficina'].errors">
+            <div *ngIf="f['cust_oficina'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['cust_oficina'].hasError('serverValidationError')">
+              {{f['cust_oficina'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="cust_limite_credito">cust_limite_credito</label> <input type="text"
+            name="cust_limite_credito" formControlName="cust_limite_credito" placeholder="cust_limite_credito"
+            [ngClass]="{'is-invalid': submitted && f['cust_limite_credito'].errors}"
+            class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['cust_limite_credito'].errors">
+            <div *ngIf="f['cust_limite_credito'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['cust_limite_credito'].hasError('serverValidationError')">
+              {{f['cust_limite_credito'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="cust_descto_pago">cust_descto_pago</label> <input type="text"
+            name="cust_descto_pago" formControlName="cust_descto_pago" placeholder="cust_descto_pago"
+            [ngClass]="{'is-invalid': submitted && f['cust_descto_pago'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['cust_descto_pago'].errors">
+            <div *ngIf="f['cust_descto_pago'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['cust_descto_pago'].hasError('serverValidationError')">
+              {{f['cust_descto_pago'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="ctas_isr">ctas_isr</label> <input type="text" name="ctas_isr"
+            formControlName="ctas_isr" placeholder="ctas_isr"
+            [ngClass]="{'is-invalid': submitted && f['ctas_isr'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['ctas_isr'].errors">
+            <div *ngIf="f['ctas_isr'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['ctas_isr'].hasError('serverValidationError')">
+              {{f['ctas_isr'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="cust_categoria">cust_categoria</label> <input type="text"
+            name="cust_categoria" formControlName="cust_categoria" placeholder="cust_categoria"
+            [ngClass]="{'is-invalid': submitted && f['cust_categoria'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['cust_categoria'].errors">
+            <div *ngIf="f['cust_categoria'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['cust_categoria'].hasError('serverValidationError')">
+              {{f['cust_categoria'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="cust_grupo">cust_grupo</label> <input type="text" name="cust_grupo"
+            formControlName="cust_grupo" placeholder="cust_grupo"
+            [ngClass]="{'is-invalid': submitted && f['cust_grupo'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['cust_grupo'].errors">
+            <div *ngIf="f['cust_grupo'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['cust_grupo'].hasError('serverValidationError')">
+              {{f['cust_grupo'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="cust_descto">cust_descto</label> <input type="text" name="cust_descto"
+            formControlName="cust_descto" placeholder="cust_descto"
+            [ngClass]="{'is-invalid': submitted && f['cust_descto'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['cust_descto'].errors">
+            <div *ngIf="f['cust_descto'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['cust_descto'].hasError('serverValidationError')">
+              {{f['cust_descto'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="mone_codigo">mone_codigo</label> <input type="text" name="mone_codigo"
+            formControlName="mone_codigo" placeholder="mone_codigo"
+            [ngClass]="{'is-invalid': submitted && f['mone_codigo'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['mone_codigo'].errors">
+            <div *ngIf="f['mone_codigo'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['mone_codigo'].hasError('serverValidationError')">
+              {{f['mone_codigo'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="cust_apertura">cust_apertura</label> <input type="text" name="cust_apertura"
+            formControlName="cust_apertura" placeholder="cust_apertura"
+            [ngClass]="{'is-invalid': submitted && f['cust_apertura'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['cust_apertura'].errors">
+            <div *ngIf="f['cust_apertura'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['cust_apertura'].hasError('serverValidationError')">
+              {{f['cust_apertura'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="nucf_prefijo">nucf_prefijo</label> <input type="text" name="nucf_prefijo"
+            formControlName="nucf_prefijo" placeholder="nucf_prefijo"
+            [ngClass]="{'is-invalid': submitted && f['nucf_prefijo'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['nucf_prefijo'].errors">
+            <div *ngIf="f['nucf_prefijo'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['nucf_prefijo'].hasError('serverValidationError')">
+              {{f['nucf_prefijo'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="dgii_tipo">dgii_tipo</label> <input type="text" name="dgii_tipo"
+            formControlName="dgii_tipo" placeholder="dgii_tipo"
+            [ngClass]="{'is-invalid': submitted && f['dgii_tipo'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['dgii_tipo'].errors">
+            <div *ngIf="f['dgii_tipo'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['dgii_tipo'].hasError('serverValidationError')">
+              {{f['dgii_tipo'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="inve_grupo">inve_grupo</label> <input type="text" name="inve_grupo"
+            formControlName="inve_grupo" placeholder="inve_grupo"
+            [ngClass]="{'is-invalid': submitted && f['inve_grupo'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['inve_grupo'].errors">
+            <div *ngIf="f['inve_grupo'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['inve_grupo'].hasError('serverValidationError')">
+              {{f['inve_grupo'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="porc_itbis">porc_itbis</label> <input type="text" name="porc_itbis"
+            formControlName="porc_itbis" placeholder="porc_itbis"
+            [ngClass]="{'is-invalid': submitted && f['porc_itbis'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['porc_itbis'].errors">
+            <div *ngIf="f['porc_itbis'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['porc_itbis'].hasError('serverValidationError')">
+              {{f['porc_itbis'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="porc_retencion">porc_retencion</label> <input type="text"
+            name="porc_retencion" formControlName="porc_retencion" placeholder="porc_retencion"
+            [ngClass]="{'is-invalid': submitted && f['porc_retencion'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['porc_retencion'].errors">
+            <div *ngIf="f['porc_retencion'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['porc_retencion'].hasError('serverValidationError')">
+              {{f['porc_retencion'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="dgii_costo">dgii_costo</label> <input type="text" name="dgii_costo"
+            formControlName="dgii_costo" placeholder="dgii_costo"
+            [ngClass]="{'is-invalid': submitted && f['dgii_costo'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['dgii_costo'].errors">
+            <div *ngIf="f['dgii_costo'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['dgii_costo'].hasError('serverValidationError')">
+              {{f['dgii_costo'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="clas_codigo">clas_codigo</label> <input type="text" name="clas_codigo"
+            formControlName="clas_codigo" placeholder="clas_codigo"
+            [ngClass]="{'is-invalid': submitted && f['clas_codigo'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['clas_codigo'].errors">
+            <div *ngIf="f['clas_codigo'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['clas_codigo'].hasError('serverValidationError')">
+              {{f['clas_codigo'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group"><label for="dpto_codigo">dpto_codigo</label> <input type="text" name="dpto_codigo"
+            formControlName="dpto_codigo" placeholder="dpto_codigo"
+            [ngClass]="{'is-invalid': submitted && f['dpto_codigo'].errors}" class="form-control form-control-sm">
+          <div class="invalid-feedback" *ngIf="submitted && f['dpto_codigo'].errors">
+            <div *ngIf="f['dpto_codigo'].hasError('required')">* Requerido</div>
+            <div *ngIf="f['dpto_codigo'].hasError('serverValidationError')">
+              {{f['dpto_codigo'].errors['serverValidationError']}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button type="submit" color="warn" (click)="onSubmit()" cdkFocusInitial>Actualizar</button>
+  <button mat-button color="primary"  mat-dialog-close>Cancelar</button>
+</mat-dialog-actions>

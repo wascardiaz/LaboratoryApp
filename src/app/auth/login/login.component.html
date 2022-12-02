@@ -1,0 +1,74 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-9 col-lg-12 col-xl-10">
+      <div class="card shadow-lg o-hidden border-0 my-5">
+        <div class="card-body p-0">
+          <div class="row">
+            <div class="col-lg-6 d-none d-lg-flex">
+              <div class="flex-grow-1 bg-login-image" style="background-image: url('assets/img/bacteriology.jpg')">
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="p-5">
+                <div class="text-center">
+                  <h1>Welcome Back!</h1>
+                </div>
+                <form class="user" [formGroup]="loginForm" (ngSubmit)="login()">
+                  <div class="row g-3">
+                    <div class="form-group">
+                      <input class="form-control form-control-user" type="username" formControlName="username"
+                        placeholder="Username"
+                        [ngClass]="{'is-invalid': submitted && f['username'].hasError('required')}" name="username" />
+                      <div class="invalid-feedback" *ngIf="submitted && f['username'].hasError('required')">
+                        <div *ngIf="f['username'].hasError('required')"> * Required </div>
+                        <div *ngIf=" f['username'].hasError('serverValidationError')">
+                          {{f["username"]?.hasError('serverValidationError')}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <input class="form-control form-control-user" type="password" formControlName="password"
+                        type="password" id="exampleInputPassword" placeholder="Password" name="password"
+                        [ngClass]="{'is-invalid': submitted && f['password'].hasError('required') }" />
+                      <div class="invalid-feedback" *ngIf="submitted && f['password'].hasError('required')">
+                        <div *ngIf="f['password'].hasError('required')"> * Required </div>
+                        <div *ngIf=" f['password'].hasError('serverValidationError')">
+                          {{f["password"]?.hasError('serverValidationError')}
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <div class="form-group">
+                      <div class="custom-control custom-checkbox small">
+                        <div class="form-check">
+                          <input
+                            class="form-check-input custom-control-input"
+                            type="checkbox"
+                            id="formCheck-1"
+                          /><label
+                            class="form-check-label custom-control-label"
+                            for="formCheck-1"
+                            >Remember Me</label
+                          >
+                        </div>
+                      </div>
+                    </div> -->
+                    <button class="btn btn-primary btn-block text-white btn-user" type="submit">
+                      <span *ngIf="loadingService.loading" class="spinner-border spinner-border-sm"></span>
+                      Login
+                    </button>
+                  </div>
+                </form>
+                <hr />
+                <div class="text-center">
+                  <a class="small" [routerLink]="['forgotpassword']">Forgot Password?
+                  </a>
+                </div>
+                <div class="text-center"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,91 @@
+<div class="d-flex flex-column" id="content-wrapper">
+    <div id="content">
+        <div class="container-fluid">
+            <h1>Analysis</h1>
+            <div class="mat-elevation-z0">
+                <mat-card class="mat-elevation-z0">
+                    <mat-form-field appearance="standard" fxFlex="40%">
+                        <mat-label>Buscar</mat-label>
+                        <input id="search" matInput pattern="/[a-zA-Z0-9-_ ]/" (keyup.esc)="input.value = ''"
+                            placeholder="Ej. Aglutinación" #input autocomplete="off">
+                        <button *ngIf="input.value" matSuffix mat-icon-button aria-label="Clear"
+                            (click)="onSearchClear()">
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    </mat-form-field>
+                    <button mat-raised-button color="primary" [routerLink]="['/dashboard/addanalysis']" type="button"
+                        style="float: right">
+                        + Agregar Analysis
+                    </button>
+                </mat-card>
+                <table mat-table [dataSource]="dataSource" matSort>
+                    <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef  mat-sort-header>Analysis ID</th>
+                        <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="description">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Analysis</th>
+                        <td mat-cell *matCellDef="let element">{{ element.description }}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="abbreviation">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Abreviatura</th>
+                        <td mat-cell *matCellDef="let element">{{ element.abbreviation }}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="analysisGroupId">
+                        <th mat-header-cell *matHeaderCellDef>Grupo</th>
+                        <td mat-cell *matCellDef="let element">
+                            {{ element.group.name}}
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="sampleTypeId">
+                        <th mat-header-cell *matHeaderCellDef>Tipo Muestra</th>
+                        <td mat-cell *matCellDef="let element">
+                            {{ element.sampleType.name}}
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="labId">
+                        <th mat-header-cell *matHeaderCellDef>Laboratorio</th>
+                        <td mat-cell *matCellDef="let element">
+                            {{ element.labId }}
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="days">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+                            Dias
+                        </th>
+                        <td mat-cell *matCellDef="let element">
+                            {{ element.days }}
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="status">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header>Analysis Status</th>
+                        <td mat-cell *matCellDef="let element"><i
+                                [ngClass]="element.status ? 'fas fa-check' : 'fas fa-times'"></i>
+                            <button mat-icon-button color="primary" (click)="updateStatus(element)"
+                                aria-label="Example icon button with a menu icon">
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+              
+                    <tr class="mat-row" *matNoDataRow>
+                      <td class="mat-cell" colspan="7">No hay datos que coincidan con el filtro "{{input.value}}"</td>
+                    </tr>
+                  </table>
+                  <mat-paginator [length]="resultsLength" [pageSize]="options.size" showFirstLastButtons [pageSizeOptions]="pageSizeOptions"
+                    aria-label="Select page">
+                  </mat-paginator>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,56 @@
+import { AnalysisOrderItem } from "./analysis-order-item.model";
+import { Ars, ArsPlan } from "./ars";
+import { Patient } from "./patient.model";
+
+export class AnalysisOrder {
+    id?: number;
+    // orderNo?: string;
+    customerId?: number;
+    factNo?: string;
+    patientId?: number;
+    pMethod?: string;
+    total: number = 0;
+    deletedOrderItemsIds?: string;
+
+    recordId?: number;
+    ingreso?: Date;
+    facturado?: boolean;
+    hora?: Date;
+    habiId?: number;
+    asegurado?: boolean;
+    groupId?: number;
+    mdcoId?: number;
+    mdcoReportId?: number;
+    arsId?: number;
+    arsPlanId?: number;
+    poliza?: string;
+    autorizacion?: string;
+    // autor_por?: string;
+    // diagPresuntivo?: string;
+    // diagDefinitivo?: string;
+    // clteGrupo?: string;
+    // clteId?: string;
+    // autoDescto?: string;
+    // autoBalance?: string;
+    // postEstatus?: string;
+    // mdcoEspecialistaId?: string;
+    // histNumero?: string;
+    // mdcoDescription?: string;
+    alta?: boolean;
+    // viaId?: string;
+    // origenId?: number;
+    // docTypeId?: string;
+    // diagId?: string;
+    // turno?: string;
+    documento?: string;
+    altaStatus?: string;
+    created?: Date;
+    updated?: Date;
+    userId?: number;
+    orderStatus?: string;
+    status?: boolean;
+    ars?: Ars;
+    arsPlan?: ArsPlan;
+    patient: Patient = new Patient();
+    cargos?: AnalysisOrderItem[] = [];
+}

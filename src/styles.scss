@@ -1,1 +1,161 @@
+@import "assets/scss/Header-Blue.scss";
+@import "assets/scss/Navigation-with-Button.scss";
+
+/* #wrapper {
+  width: 20%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background-color: #184e8e;
+} */
+
+#wrapper {
+  height: 100%; /* Full-height: remove this if you want "auto" height */
+  width: 20%; /* Set the width of the sidebar */
+  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  background-color: #184e8e; /* Black */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 20px;
+}
+
+#main-outlet {
+  width: 80%;
+  float: right;
+  padding: 12px;
+}
+
+.fas {
+  margin: 8px;
+}
+
+#logo {
+  margin: 18px 8px !important;
+}
+#role {
+  margin: 8px !important;
+}
+
+.nav-item {
+  align-items: flex-start;
+}
+
 /* You can add global styles to this file, and also import other style files */
+.jumbotron {
+  padding-top: 0px;
+  background: #fff;
+}
+
+.form-control,
+.input-group-text {
+  border: 1px solid #0080ff;
+}
+.form-control:disabled,
+.form-control[readonly] {
+  background-color: #e9ecef;
+  opacity: 1;
+}
+
+table {
+  width: 100%;
+}
+
+table.table-hover tbody tr:hover {
+  cursor: pointer;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 16px;
+}
+
+::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  min-height: 50px;
+  border-radius: 10px;
+  border: 4px solid transparent;
+  background-color: #ccc;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-track {
+  border: none;
+}
+
+/* Action Bar */
+
+.action-bar ul {
+  margin: 0;
+}
+
+.action-bar ul li {
+  padding-right: 4px;
+  display: inline-block;
+  list-style: none;
+}
+
+.action-bar ul li.actionbar-separator {
+  cursor: pointer;
+}
+
+.action-bar ul li a {
+  padding: 4px;
+  line-height: 22px;
+  border: 1px solid transparent;
+}
+
+.action-bar ul li a > .icon-placeholder:only-child {
+  margin-right: 0;
+}
+
+.action-bar ul li a:hover:not(.disabled) {
+  text-decoration: none;
+  background-color: #e9f6fd;
+  border: 1px solid #c7e9ff;
+}
+
+.action-bar ul li a:focus {
+  text-decoration: none;
+  outline: 0;
+  box-shadow: 0 0 0 1px #3cf;
+}
+
+.action-bar ul li a.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.action-bar .icon-placeholder {
+  margin-top: -1px;
+  margin-left: 0;
+}
+
+.action-bar .action-label {
+  max-width: 120px;
+  color: #333;
+}
+
+.action-bar .actionbar-separator {
+  border: 1px solid #999;
+  border-left: none;
+  margin: 0 3px 0 4px;
+}
+
+.action-bar .caret,
+.action-bar .down-arrow,
+.action-bar .right-arrow {
+  margin: 2px 0 4px 4px;
+}

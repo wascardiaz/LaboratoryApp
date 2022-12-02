@@ -1,0 +1,403 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="card">
+            <div class="card-header card-header-success">
+                <h3 class="card-title">Toma de Muestra</h3>
+                <!-- <app-caso-info [casoInfo]="casoInfo" [master]="master"></app-caso-info> -->
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-header card-header-warning">
+                                <h4 class="card-title">Ordenes / Pruebas</h4>
+                                <!-- <p class="card-category">Ondenes inscritas</p> -->
+                            </div>
+                            <div class="card-body table-responsive">
+                                <!-- <h4 class="card-title">Ordenes</h4> -->
+                                <mat-tab-group mat-stretch-tabs class="example-stretched-tabs"
+                                    [(selectedIndex)]=selectedTabIndex>
+                                    <mat-tab label="Ordenes">
+                                        <table mat-table [dataSource]="orderSource" class="mat-elevation-z8">
+
+                                            <!-- Position Column -->
+                                            <ng-container matColumnDef="recpId">
+                                                <th mat-header-cell *matHeaderCellDef> Código </th>
+                                                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+                                            </ng-container>
+
+                                            <!-- Name Column -->
+                                            <ng-container matColumnDef="recpDate">
+                                                <th mat-header-cell *matHeaderCellDef> Fecha </th>
+                                                <td mat-cell *matCellDef="let element"> {{element.recpDate | date :
+                                                    'dd/MM/yy'}} </td>
+                                            </ng-container>
+
+                                            <!-- Weight Column -->
+                                            <ng-container matColumnDef="recpTime">
+                                                <th mat-header-cell *matHeaderCellDef> Hora </th>
+                                                <td mat-cell *matCellDef="let element"> {{element.recpDate | date :
+                                                    'hh:mm aa'}} </td>
+                                            </ng-container>
+
+                                            <!-- Symbol Column -->
+                                            <ng-container matColumnDef="userId">
+                                                <th mat-header-cell *matHeaderCellDef> Usuario </th>
+                                                <td mat-cell *matCellDef="let element"> {{element.userId}} </td>
+                                            </ng-container>
+
+                                            <!-- Symbol Column -->
+                                            <ng-container matColumnDef="action">
+                                                <th mat-header-cell *matHeaderCellDef> </th>
+                                                <td mat-cell *matCellDef="let element" class="td-actions text-right">
+                                                    <a mat-icon-button color="primary"
+                                                        matTooltip="Ver detalles de esta Orden"
+                                                        matTooltipPosition="left" (click)="redirectToDetails(element)">
+                                                        <mat-icon>visibility</mat-icon>
+                                                    </a>
+                                                    <!-- <a mat-icon-button color="primary" matTooltip="Ver detalles"
+                                                        [routerLink]="['/dashboard/updateanalysisorder']"
+                                                        [queryParams]="{caseId:element.caseId, recpId:element.id}"
+                                                        class="btn btn-warning btn-link btn-sm btn-just-icon">
+                                                        <mat-icon>visibility</mat-icon>
+                                                    </a> -->
+                                                    <a mat-icon-button color="accent" matTooltip="Registrar Resultados"
+                                                        matTooltipPosition="right"
+                                                        (click)="redirectToAnalysisResultEdit(element)">
+                                                        <mat-icon>edit</mat-icon>
+                                                    </a>
+                                                    <!-- <a mat-icon-button matTooltip="Editar Resultados"
+                                                        [routerLink]="['/dashboard/registros/pending/edit']"
+                                                        [queryParams]="{caseId:element.caseId, recpId:element.id}"
+                                                        class="btn btn-success btn-link btn-sm btn-just-icon">
+                                                        <mat-icon>edit</mat-icon>
+                                                    </a> -->
+                                                </td>
+                                            </ng-container>
+
+                                            <tr mat-header-row *matHeaderRowDef="orderColums"></tr>
+                                            <tr mat-row *matRowDef="let row; columns: orderColums;"></tr>
+
+                                            <tr class="mat-row" *matNoDataRow>
+                                                <td class="mat-cell" colspan="7">Ninguna orden</td>
+                                            </tr>
+                                        </table>
+                                        <mat-paginator #orderPaginator="matPaginator" [pageSize]="8"></mat-paginator>
+                                    </mat-tab>
+                                    <mat-tab label="Pruebas">
+                                        <table mat-table [dataSource]="testSource" class="mat-elevation-z8">
+
+                                            <!-- Name Column -->
+                                            <ng-container matColumnDef="test">
+                                                <th mat-header-cell *matHeaderCellDef> Descriptión </th>
+                                                <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+                                            </ng-container>
+
+                                            <!-- Name Column -->
+                                            <ng-container matColumnDef="date">
+                                                <th style="width: 75px;" mat-header-cell *matHeaderCellDef> Fecha </th>
+                                                <td mat-cell *matCellDef="let element"> {{element.created | date:
+                                                    'dd/MM/yy'}} </td>
+                                            </ng-container>
+
+                                            <!-- Weight Column -->
+                                            <ng-container matColumnDef="time">
+                                                <th style="width: 60px;" mat-header-cell *matHeaderCellDef> Hora </th>
+                                                <td mat-cell *matCellDef="let element"> {{element.created | date :
+                                                    'hh:mm
+                                                    a'}} </td>
+                                            </ng-container>
+
+                                            <!-- Symbol Column -->
+                                            <ng-container matColumnDef="action">
+                                                <th mat-header-cell *matHeaderCellDef> </th>
+                                                <td mat-cell *matCellDef="let element" style="text-align: right;">
+                                                    <button mat-icon-button color="primary"
+                                                        (click)="addOrderDetails(element)" [disabled]="!editMode">
+                                                        <mat-icon>add</mat-icon>
+                                                    </button>
+                                                </td>
+                                            </ng-container>
+
+                                            <tr mat-header-row *matHeaderRowDef="testColums"></tr>
+                                            <tr mat-row *matRowDef="let row; columns: testColums;"></tr>
+
+                                            <tr class="mat-row" *matNoDataRow>
+                                                <td class="mat-cell" colspan="7">Ningun estudio</td>
+                                            </tr>
+                                        </table>
+                                        <mat-paginator #studioPaginator="matPaginator" [pageSize]="8"></mat-paginator>
+                                    </mat-tab>
+                                </mat-tab-group>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <!-- <h4 class="card-title">Detalles de Orden</h4> -->
+                        <div class="card">
+                            <div class="card-header card-header-primary">
+                                <h4 class="card-title">Detalles Orden:
+                                    <!-- {{resultForm?.value.recp_numero}} -->
+                                </h4>
+                                <p class="card-category">
+                                    <!-- {{resultForm?.value.recp_fecha | date: 'dd/MM/yyyy
+                                    hh:mm:ss'}} -->
+                                </p>
+                            </div>
+                            <div class="card-body">
+                                <div class="box-body">
+                                    <div class="example-container">
+                                        <!-- <div class="example-loading-shade" *ngIf="loading$ | async">
+                                    <mat-spinner *ngIf="loading$ | async"></mat-spinner>
+                                    <div class="example-rate-limit-reached" *ngIf="isRateLimitReached">
+                                        Se alcanzó el límite de velocidad de la API de OncologicoIntegral. Se restablecerá en un
+                                        minuto.
+                                    </div>
+                                </div> -->
+                                        <!-- <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                            <ul>
+                                                <li>
+                                                    <button mat-button matTooltip="Registrar Nueva Orden de Laboratorio"
+                                                        color="primary" (click)="newOrder()"
+                                                        [disabled]="editMode || !testSource.data.length || loadingService.enableLoading()">
+                                                        <mat-icon>add_circle</mat-icon>
+                                                        <span>Nueva Orden</span>
+                                                    </button>
+                                                </li>
+                                                <li><span class="actionbar-separator"></span></li>
+                                                <li>
+                                                    <button mat-button matTooltip="Guardar Orden" color="primary"
+                                                        (click)="onSubmit()"
+                                                        [disabled]="!editMode || loadingService.enableLoading()"><span
+                                                            *ngIf="loadingService.enableLoading()"
+                                                            class="spinner-border spinner-border-sm mr-1"></span>
+                                                        <mat-icon>save</mat-icon>
+                                                        <span>Guardar Orden</span>
+                                                    </button>
+                                                </li>
+                                                <li><span class="actionbar-separator"></span></li>
+                                                <li>
+                                                    <button mat-button matTooltip="Cancelar Orden" color="warn"
+                                                        (click)="goBack()" [disabled]="!editMode">
+                                                        <mat-icon>cancel</mat-icon>
+                                                        <span>Cancelar Orden</span>
+                                                    </button>
+                                                </li>
+                                                <li><span class="actionbar-separator"></span></li>
+                                                <li>
+                                                    <button mat-button matTooltip="Imprimir Etiqueta" type="button"
+                                                        (click)="generateBarcodePdf('print')"
+                                                        [disabled]="!orderSource.data.length || editMode || loadingService.enableLoading()">
+                                                        <mat-icon>print</mat-icon>
+                                                        <span>Imprimir Etiqueta(s)</span>
+                                                    </button>
+                                                </li>
+                                            </ul>
+                                        </div> -->
+                                        <section class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                            <!-- <div class="example-label">Stroked</div> -->
+                                            <div class="example-button-row">
+                                                <button mat-stroked-button
+                                                    matTooltip="Registrar Nueva Orden de Laboratorio" color="primary"
+                                                    (click)="newOrder()"
+                                                    [disabled]="editMode || !testSource.data.length || loadingService.enableLoading()">
+                                                    <mat-icon>add_circle</mat-icon><br>
+                                                    <span>Nueva Orden</span>
+                                                </button>
+                                                <button mat-stroked-button matTooltip="Guardar Orden" color="primary"
+                                                    (click)="onSubmit()"
+                                                    [disabled]="!editMode || loadingService.enableLoading()"><span
+                                                        *ngIf="loadingService.enableLoading()"
+                                                        class="spinner-border spinner-border-sm mr-1"></span>
+                                                    <mat-icon>save</mat-icon><br>
+                                                    <span>Guardar Orden</span>
+                                                </button>
+                                                <button mat-stroked-button matTooltip="Cancelar Orden" color="warn"
+                                                    (click)="goBack()" [disabled]="!editMode">
+                                                    <mat-icon>cancel</mat-icon><br>
+                                                    <span>Cancelar Orden</span>
+                                                </button>
+                                                <button mat-stroked-button matTooltip="Imprimir Etiqueta" type="button"
+                                                    (click)="generateBarcodePdf('print')"
+                                                    [disabled]="!orderSource.data.length || editMode || loadingService.enableLoading()">
+                                                    <mat-icon>print</mat-icon><br>
+                                                    <span>Imprimir Etiqueta(s)</span>
+                                                </button>
+                                            </div>
+                                        </section>
+                                        <!-- <mat-divider></mat-divider> -->
+                                        <hr>
+                                        <form [formGroup]="orderForm">
+                                            <div class="row g-3">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label>No. Orden</label>
+                                                        <input type="text" class="form-control form-control-sm"
+                                                            formControlName="id" placeholder="No. Orden" name="id"
+                                                            [ngClass]="{'is-invalid': g['id'].errors}" readonly />
+                                                        <div class="invalid-feedback" *ngIf="g['id'].errors">
+                                                            <div *ngIf="g['id'].hasError('required')">* Required
+                                                            </div>
+                                                            <div *ngIf="g['id'].hasError('serverValidationError')">
+                                                                {{g['id'].errors['serverValidationError']}}</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label>No. Factura</label>
+                                                        <input type="text" class="form-control form-control-sm"
+                                                            formControlName="caseId" placeholder="No. Factura"
+                                                            name="caseId" [ngClass]="{'is-invalid': g['caseId'].errors}"
+                                                            readonly />
+                                                        <div class="invalid-feedback" *ngIf="g['caseId'].errors">
+                                                            <div *ngIf="g['caseId'].hasError('required')">* Required
+                                                            </div>
+                                                            <div *ngIf="g['caseId'].hasError('serverValidationError')">
+                                                                {{g['caseId'].errors['serverValidationError']}}</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="recpDate"> Fecha <br /></label>
+                                                        <input class="form-control form-control-sm" type="Date"
+                                                            name="recpDate" formControlName="recpDate"
+                                                            [ngClass]="{'is-invalid': g['recpDate'].errors}" />
+                                                        <div class="invalid-feedback" *ngIf="g['recpDate'].errors">
+                                                            <div *ngIf="g['recpDate'].hasError('required')">*
+                                                                Required</div>
+                                                            <div
+                                                                *ngIf="g['recpDate'].hasError('serverValidationError')">
+                                                                {{g['recpDate'].errors['serverValidationError'] }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="recpTime"> Hora <br /></label>
+                                                        <input class="form-control form-control-sm" type="time"
+                                                            name="recpTime" formControlName="recpTime"
+                                                            [ngClass]="{'is-invalid': g['recpTime'].errors}" />
+                                                        <div class="invalid-feedback" *ngIf="g['recpTime'].errors">
+                                                            <div *ngIf="g['recpTime'].hasError('required')">*
+                                                                Required</div>
+                                                            <div
+                                                                *ngIf="g['recpTime'].hasError('serverValidationError')">
+                                                                {{g['recpTime'].errors['serverValidationError'] }}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label>Médico</label>
+                                                        <select name="mdcoId" class="form-control form-control-sm"
+                                                            formControlName="mdcoId" placeholder="Médico" name="mdcoId"
+                                                            [ngClass]="{'is-invalid': g['mdcoId'].errors}">
+                                                            <option value="null">-Select-</option>
+                                                            <option *ngFor="let m of medicoSource" [value]="m.medicoid">
+                                                                {{m.person.firstName}} {{m.person.lastName}}</option>
+                                                        </select>
+                                                        <div class="invalid-feedback" *ngIf="g['mdcoId'].errors">
+                                                            <div *ngIf="g['mdcoId'].hasError('required')">*
+                                                                Required
+                                                            </div>
+                                                            <div *ngIf="g['mdcoId'].hasError('serverValidationError')">
+                                                                {{g['mdcoId'].errors['serverValidationError']}}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="form-group">
+                                                        <label>Nota General</label>
+                                                        <textarea matInput cols="30" rows="2" placeholder="Nota General"
+                                                            formControlName="recpNote"
+                                                            class="form-control form-control-sm"
+                                                            [ngClass]="{'is-invalid': submitted && g['recpNote'].errors}"></textarea>
+                                                        <div class="invalid-feedback" *ngIf="g['recpNote'].errors">
+                                                            <div *ngIf="g['recpNote'].hasError('required')">* Required
+                                                            </div>
+                                                            <div
+                                                                *ngIf="g['recpNote'].hasError('serverValidationError')">
+                                                                {{g['recpNote'].errors['serverValidationError']}}</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- <fieldset [disabled]="!editMode"> -->
+                                            <div *ngIf="submitted && !orderContentSource.data.length"
+                                                class="invalid-feedback">
+                                                <div *ngIf="submitted && !orderContentSource.data">No ha agregado
+                                                    ninguna
+                                                    prueba
+                                                </div>
+                                            </div>
+                                            <!-- </fieldset> -->
+                                        </form>
+                                        <hr>
+                                        <!-- <app-order-data [owner]='orderForm.getRawValue()'
+                                            (selectEmitt)='showAccounts = $event'>
+                                        </app-order-data> -->
+                                        <!-- <app-studio-data *ngIf='showAccounts' [accounts]='orderContentSource.data'>
+                                        </app-studio-data> -->
+                                        <table class="table table-hover">
+                                            <thead class="text-primary">
+                                                <tr>
+                                                    <th><strong>Muestra</strong></th>
+                                                    <th><strong>Prueba</strong></th>
+                                                    <th><strong>Grupo</strong></th>
+                                                    <th><strong>Fecha</strong></th>
+                                                    <th><strong>Cargo</strong></th>
+                                                    <th><strong>Estatus</strong></th>
+                                                    <th><strong>Acción</strong></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngIf="submitted && !orderContentSource.data.length"
+                                                    [class.text-danger]="submitted">
+                                                    <td class="font-italic text-center" colspan="7">
+                                                        Debe agrerar al menos una Muestra.
+                                                    </td>
+                                                </tr>
+                                                <tr *ngFor="let studio of orderContentSource.data; let i = index">
+                                                    <!-- <td [attr.rowspan]="studio.rowspn" *ngIf="studio.rowspn > 0">
+                                                        {{studio?.sampleDescription}}
+                                                    </td> -->
+                                                    <td>
+                                                        {{studio?.sampleDescription}}
+                                                    </td>
+                                                    <td>{{studio?.testDescription}}</td>
+                                                    <td>{{studio?.groupDescription}}</td>
+                                                    <td>{{studio?.sampleRecogida | date: 'dd/MM/yyyy'}}</td>
+                                                    <td>{{studio?.cargId}}</td>
+                                                    <td>{{studio?.sampleEstatus}}</td>
+                                                    <td class="td-actions text-right">
+                                                        <!-- <button mat-raised-button
+                                                            class="btn btn-primary btn-link btn-sm btn-just-icon"
+                                                            mattooltip="Editar Muestra" type="button"
+                                                            (click)="editOrderDetails(studio, i)">
+                                                            <mat-icon>edit</mat-icon>
+                                                        </button> -->
+                                                        <button class="btn btn-danger btn-link btn-sm btn-just-icon"
+                                                            mat-raised-button mattooltip="Remover Estudio" type="button"
+                                                            (click)="removeOrderDetailFromOrder(studio)">
+                                                            <i class="material-icons">remove</i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <!-- <div *ngIf="orderSource.data.length || editMode"> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

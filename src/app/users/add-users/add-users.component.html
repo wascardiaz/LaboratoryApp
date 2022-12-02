@@ -1,0 +1,203 @@
+<div>
+    <div class="d-flex flex-column" id="content-wrapper">
+        <div id="content">
+            <div class="container-fluid">
+                <h1>Profile</h1>
+                <form (ngSubmit)="onSubmit()" [formGroup]="userForm">
+                    <div class="card shadow mb-5">
+                        <div class="card-header py-3">
+                            <p class="text-primary m-0 font-weight-bold">Credentials</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="row g-3">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="roleId">Rol</label>
+                                        <select name="roleId" id="roleId" formControlName="roleId"
+                                            class="form-control form-control-sm"
+                                            [ngClass]="{'is-invalid': submitted && f['roleId'].errors}">
+                                            <option value="0">select...</option>
+                                            <option *ngFor="let role of userRoleSource" [value]="role.id">{{role.name}}
+                                            </option>
+                                        </select>
+                                        <div class="invalid-feedback" *ngIf="submitted && f['roleId'].errors">
+                                            <div *ngIf="f['roleId'].hasError('required')">* Required</div>
+                                            <div *ngIf="f['roleId'].hasError('serverValidationError')">
+                                                {{f['roleId'].errors['serverValidationError'] }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="userGroupId">Grupo</label>
+                                        <select name="userGroupId" #group id="userGroupId" formControlName="userGroupId"
+                                            class="form-control form-control-sm" (change)="onGroupSectedChange($event)"
+                                            [ngClass]="{'is-invalid': submitted && f['userGroupId'].errors}">
+                                            <option value="0">select...</option>
+                                            <option *ngFor="let group of userGroupSource" [value]="group.id">
+                                                {{group.name}}</option>
+                                        </select>
+                                        <div class="invalid-feedback" *ngIf="submitted && f['userGroupId'].errors">
+                                            <div *ngIf="f['userGroupId'].hasError('required')">* Required</div>
+                                            <div *ngIf="f['userGroupId'].hasError('serverValidationError')">
+                                                {{f['userGroupId'].errors['serverValidationError'] }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4" *ngIf="groupIndex === 1">
+                                    <div class="form-group">
+                                        <label>{{selectedGroup}}</label>
+                                        <select name="customerId" formControlName="customerId"
+                                            class="form-control form-control-sm"
+                                            [ngClass]="{'is-invalid': submitted && f['customerId'].errors}">
+                                            <option value="0">-Select-</option>
+                                            <option *ngFor="let employee of employiesSource" [value]="employee.id">
+                                                {{employee.person?.firstName}} {{employee.person?.lastName}}
+                                            </option>
+                                        </select>
+                                        <div class="invalid-feedback" *ngIf="submitted && f['customerId'].errors">
+                                            <div *ngIf="f['customerId'].hasError('required')">* Required</div>
+                                            <div *ngIf="f['customerId'].hasError('serverValidationError')">
+                                                {{f['customerId'].errors['serverValidationError'] }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4" *ngIf="groupIndex === 2">
+                                    <div class="form-group">
+                                        <label>{{selectedGroup}}</label>
+                                        <select name="customerId" formControlName="customerId"
+                                            class="form-control form-control-sm"
+                                            [ngClass]="{'is-invalid': submitted && f['customerId'].errors}">
+                                            <option value="0">-Select-</option>
+                                            <option *ngFor="let customer of customersSource" [value]="customer.id">
+                                                {{customer.cust_descripcion}}
+                                            </option>
+                                        </select>
+                                        <div class="invalid-feedback" *ngIf="submitted && f['customerId'].errors">
+                                            <div *ngIf="f['customerId'].hasError('required')">* Required</div>
+                                            <div *ngIf="f['customerId'].hasError('serverValidationError')">
+                                                {{f['customerId'].errors['serverValidationError'] }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4" *ngIf="groupIndex === 3">
+                                    <div class="form-group">
+                                        <label>{{selectedGroup}}</label>
+                                        <select name="customerId" formControlName="customerId"
+                                            class="form-control form-control-sm"
+                                            [ngClass]="{'is-invalid': submitted && f['customerId'].errors}">
+                                            <option value="0">-Select-</option>
+                                            <option *ngFor="let medic of medicsSource" [value]="medic.id">
+                                                {{medic.person?.firstName}} {{medic.person?.lastName}}
+                                            </option>
+                                        </select>
+                                        <div class="invalid-feedback" *ngIf="submitted && f['customerId'].errors">
+                                            <div *ngIf="f['customerId'].hasError('required')">* Required</div>
+                                            <div *ngIf="f['customerId'].hasError('serverValidationError')">
+                                                {{f['customerId'].errors['serverValidationError'] }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4" *ngIf="groupIndex === 4">
+                                    <div class="form-group">
+                                        <label>{{selectedGroup}}</label>
+                                        <select name="customerId" formControlName="customerId"
+                                            class="form-control form-control-sm"
+                                            [ngClass]="{'is-invalid': submitted && f['customerId'].errors}">
+                                            <option value="0">-Select-</option>
+                                            <option *ngFor="let patient of patientsSource" [value]="patient.id">
+                                                {{patient.person?.firstName}} {{patient.person?.lastName}}
+                                            </option>
+                                        </select>
+                                        <div class="invalid-feedback" *ngIf="submitted && f['customerId'].errors">
+                                            <div *ngIf="f['customerId'].hasError('required')">* Required</div>
+                                            <div *ngIf="f['customerId'].hasError('serverValidationError')">
+                                                {{f['customerId'].errors['serverValidationError'] }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="username"> Username </label><input type="text"
+                                            class="form-control form-control-sm" placeholder="Enter Username"
+                                            name="username" formControlName="username"
+                                            [ngClass]="{'is-invalid': submitted && f['username'].errors}" />
+                                        <div class="invalid-feedback" *ngIf="submitted && f['username'].errors">
+                                            <div *ngIf="f['username'].hasError('required')">* Required</div>
+                                            <div *ngIf="f['username'].hasError('serverValidationError')">
+                                                {{f['username'].errors['serverValidationError'] }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="emal"> Email </label>
+                                        <input type="text" formControlName="emailId"
+                                            class="form-control form-control-sm" placeholder="Email"
+                                            [ngClass]="{'is-invalid': submitted && f['emailId'].errors}">
+                                        <div class="invalid-feedback" *ngIf="submitted && f['emailId'].errors">
+                                            <div *ngIf="f['emailId'].hasError('required')">* Required</div>
+                                            <div *ngIf="f['emailId'].hasError('serverValidationError')">
+                                                {{f['emailId'].errors['serverValidationError'] }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="password"> Password </label><input type="password"
+                                            class="form-control form-control-sm" placeholder="Enter Password"
+                                            name="password" formControlName="password"
+                                            [ngClass]="{'is-invalid': submitted && f['password'].errors}" />
+                                        <div class="invalid-feedback" *ngIf="submitted && f['password'].errors">
+                                            <div *ngIf="f['password'].hasError('required')">* Required</div>
+                                            <div *ngIf="f['password'].hasError('serverValidationError')">
+                                                {{f['password'].errors['serverValidationError'] }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="confirmPassword"> Password </label>
+                                        <input type="password" class="form-control form-control-sm"
+                                            placeholder="Confirm Password" name="confirmPassword"
+                                            formControlName="confirmPassword"
+                                            [ngClass]="{'is-invalid': submitted && f['confirmPassword'].errors}" />
+                                        <div class="invalid-feedback" *ngIf="submitted && f['confirmPassword'].errors">
+                                            <div *ngIf="f['confirmPassword'].hasError('required')">* Required</div>
+                                            <div *ngIf="f['confirmPassword'].hasError('passwordMatchError')">
+                                                Password
+                                                not same</div>
+                                            <div *ngIf="f['confirmPassword'].hasError('serverValidationError')">
+                                                {{f['confirmPassword'].errors['serverValidationError'] }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-primary btn-sm btn-block text-white btn-user" type="submit">
+                                        <span *ngIf="loadingService.loading"
+                                            class="spinner-border spinner-border-sm"></span>
+                                        Add User
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="message" class="alert alert-success" role="alert">
+                        {{message}}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

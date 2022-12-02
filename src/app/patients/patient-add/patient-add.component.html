@@ -1,0 +1,476 @@
+<h2 mat-dialog-title>{{fromPage.title}}</h2>
+<h2 mat-dialog-sub-title>{{fromPage.subTitle}}</h2>
+<p>{{fromPage.body}}</p>
+<mat-dialog-content class="mat-typography">
+    <form [formGroup]="frmPatient">
+        <!-- Hidden filed -->
+        <input type="number" hidden formControlName="id" name="id">
+        <!-- <app-person-form formGroupName="person" [person]="person" (personFormEvent)="setVal($event)"></app-person-form> -->
+        <div formGroupName="person">
+            <input type="number" hidden formControlName="id" name="id">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Tipo Documento</label>
+        
+                        <select name="documentTypeId" class="form-control form-control-sm" formControlName="documentTypeId"
+                            placeholder="documentTypeId" name="documentTypeId" (change)="onDocuTypeSectedChange($event)"
+                            [ngClass]="{'is-invalid': fp['documentTypeId'].errors}">
+                            <option value=" 0">-Select-</option>
+                            <option *ngFor="let docType of personDocuTypeSource" [value]="docType.id">
+                                {{docType.name}}
+                            </option>
+                        </select>
+                        <div class="invalid-feedback" *ngIf="fp['documentTypeId'].errors">
+                            <div *ngIf="fp['documentTypeId'].hasError('required')">* Required
+                            </div>
+                            <div *ngIf="fp['documentTypeId'].hasError('serverValidationError')">
+                                {{fp['documentTypeId'].errors['serverValidationError']}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Documento</label>
+        
+                        <input type="text" class="form-control form-control-sm" formControlName="document"
+                            placeholder="document" name="document" [ngClass]="{'is-invalid': fp['document'].errors}" #box
+                            (keyup.enter)="onEnterDocument(box.value)" (blur)="onEnterDocument(box.value)"
+                            (keyup)="onEnterDocument(box.value)" />
+                        <div class="invalid-feedback" *ngIf="fp['document'].errors">
+                            <div *ngIf="fp['document'].hasError('required')">* Required</div>
+                            <div *ngIf="fp['document'].hasError('serverValidationError')">
+                                {{fp['document'].errors['serverValidationError']}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="dateOfBirth"> Date of Birth <br /></label>
+                        <input class="form-control form-control-sm" type="Date" name="dateOfBirth" formControlName="dateOfBirth"
+                            [ngClass]="{'is-invalid': fp['dateOfBirth'].errors}" />
+                        <div class="invalid-feedback" *ngIf="fp['dateOfBirth'].errors">
+                            <div *ngIf="fp['dateOfBirth'].hasError('required')">* Required</div>
+                            <div *ngIf="fp['dateOfBirth'].hasError('serverValidationError')">
+                                {{fp['dateOfBirth'].errors['serverValidationError'] }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="firstName"> First Name <br /></label>
+                        <input class="form-control form-control-sm" formControlName="firstName" type="text"
+                            placeholder="First Name" name="firstName" [ngClass]="{'is-invalid': fp['firstName'].errors}" />
+                        <div class="invalid-feedback" *ngIf="fp['firstName'].errors">
+                            <div *ngIf="fp['firstName'].hasError('required')">* Required</div>
+                            <div *ngIf="fp['firstName'].hasError('serverValidationError')">
+                                {{fp['firstName'].errors['serverValidationError'] }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="lastName"> Last Name </label>
+                        <input class="form-control form-control-sm" formControlName="lastName" type="text"
+                            placeholder="Last Name" name="lastName" [ngClass]="{'is-invalid': fp['lastName'].errors}" />
+                        <div class="invalid-feedback" *ngIf="fp['lastName'].errors">
+                            <div *ngIf="fp['lastName'].hasError('required')">* Required</div>
+                            <div *ngIf="fp['lastName'].hasError('serverValidationError')">
+                                {{fp['lastName'].errors['serverValidationError'] }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group"><label for="nickname"></label>
+        
+                        <input type="text" class="form-control form-control-sm" formControlName="nickname"
+                            placeholder="nickname" name="nickname" [ngClass]="{'is-invalid': fp['nickname'].errors}" />
+                        <div class="invalid-feedback" *ngIf="fp['nickname'].errors">
+                            <div *ngIf="fp['nickname'].hasError('required')">* Required</div>
+                            <div *ngIf="fp['nickname'].hasError('serverValidationError')">
+                                {{fp['nickname'].errors['serverValidationError']}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label>Genero</label>
+        
+                        <select name="genderId" class="form-control form-control-sm" formControlName="genderId"
+                            placeholder="genderId" name="genderId" [ngClass]="{'is-invalid': fp['genderId'].errors}">
+                            <option value=" 0">-Select-</option>
+                            <option *ngFor="let gender of personGenderSouruce" [value]="gender.id">
+                                {{gender.name}}
+                            </option>
+                        </select>
+                        <div class="invalid-feedback" *ngIf="fp['genderId'].errors">
+                            <div *ngIf="fp['genderId'].hasError('required')">* Required</div>
+                            <div *ngIf="fp['genderId'].hasError('serverValidationError')">
+                                {{fp['genderId'].errors['serverValidationError']}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Profesion</label>
+        
+                        <select name="professionId" class="form-control form-control-sm" formControlName="professionId"
+                            placeholder="professionId" name="professionId"
+                            [ngClass]="{'is-invalid': fp['professionId'].errors}">
+                            <option value=" 0">-Select-</option>
+                            <option *ngFor="let profesion of personProfessions" [value]="profesion.id">
+                                {{profesion.name}}
+                            </option>
+                        </select>
+                        <div class="invalid-feedback" *ngIf="fp['professionId'].errors">
+                            <div *ngIf="fp['professionId'].hasError('required')">* Required</div>
+                            <div *ngIf="fp['professionId'].hasError('serverValidationError')">
+                                {{fp['professionId'].errors['serverValidationError']}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label>Estado Civil</label>
+        
+                        <select name="civilStateId" class="form-control form-control-sm" formControlName="civilStateId"
+                            placeholder="civilStateId" name="civilStateId"
+                            [ngClass]="{'is-invalid': fp['civilStateId'].errors}">
+                            <option value=" 0">-Select-</option>
+                            <option *ngFor="let civilSate of civilStateSource" [value]="civilSate.id">
+                                {{civilSate.name}}
+                            </option>
+                        </select>
+                        <div class="invalid-feedback" *ngIf="fp['civilStateId'].errors">
+                            <div *ngIf="fp['civilStateId'].hasError('required')">* Required</div>
+                            <div *ngIf="fp['civilStateId'].hasError('serverValidationError')">
+                                {{fp['civilStateId'].errors['serverValidationError']}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="phoneNo"> Phone No <br /></label>
+                        <input class="form-control form-control-sm" type="text" placeholder="Enter Phone No." name="phoneNo"
+                            formControlName="phoneNo" [ngClass]="{'is-invalid': fp['phoneNo'].errors}" />
+                        <div class="invalid-feedback" *ngIf="fp['phoneNo'].errors">
+                            <div *ngIf="fp['phoneNo'].hasError('required')">* Required</div>
+                            <div *ngIf="fp['phoneNo'].hasError('serverValidationError')">
+                                {{fp['phoneNo'].errors['serverValidationError'] }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <label for="email"> Email <br /></label>
+                        <input class="form-control form-control-sm" type="text" placeholder="Email" name="email"
+                            formControlName="email" [ngClass]="{'is-invalid': fp['email'].errors}" />
+                        <div class="invalid-feedback" *ngIf="fp['email'].errors">
+                            <div *ngIf="fp['email'].hasError('required')">* Required</div>
+                            <div *ngIf="fp['email'].hasError('serverValidationError')">
+                                {{fp['email'].errors['serverValidationError'] }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label>Tipo Paciente</label>
+
+                    <select name="patientTypeId" class="form-control form-control-sm" formControlName="patientTypeId"
+                        placeholder="patientTypeId" name="patientTypeId" (change)="onDocuTypeSectedChange($event)"
+                        [ngClass]="{'is-invalid': submitted && f['patientTypeId'].errors}">
+                        <option value=" 0">-Select-</option>
+                        <option *ngFor="let patientType of patientTypeSource" [value]="patientType.id">
+                            {{patientType.name}}
+                        </option>
+                    </select>
+                    <div class="invalid-feedback" *ngIf="submitted && f['patientTypeId'].errors">
+                        <div *ngIf="f['patientTypeId'].hasError('required')">* Required
+                        </div>
+                        <div *ngIf="f['patientTypeId'].hasError('serverValidationError')">
+                            {{f['patientTypeId'].errors['serverValidationError']}}</div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="col">
+                <div class="form-group">
+                    <label>Médico</label>
+                    
+                    <select name="medicoId" class="form-control form-control-sm" formControlName="medicoId"
+                        placeholder="medicoId" name="medicoId" (change)="onDocuTypeSectedChange($event)"
+                        [ngClass]="{'is-invalid': submitted && f['medicoId'].errors}">
+                        <option value=" 0">-Select-</option>
+                        <option *ngFor="let medico of medicoSource" [value]="medico.id">
+                            {{medico.name}}
+                        </option>
+                    </select>
+                    <div class="invalid-feedback" *ngIf="submitted && f['medicoId'].errors">
+                        <div *ngIf="f['medicoId'].hasError('required')">* Required
+                        </div>
+                        <div *ngIf="f['medicoId'].hasError('serverValidationError')">
+                            {{f['medicoId'].errors['serverValidationError']}}</div>
+                    </div>
+                </div>
+            </div> -->
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="nss"> NSS <br /> </label>
+                    <input class="form-control form-control-sm" type="text" name="nss" formControlName="nss"
+                        [ngClass]="{'is-invalid': submitted && f['nss'].errors}" />
+                    <div class="invalid-feedback" *ngIf="submitted && f['nss'].errors">
+                        <div *ngIf="f['nss'].hasError('required')">* Required</div>
+                        <div *ngIf="f['nss'].hasError('serverValidationError')">
+                            {{f['nss'].errors['serverValidationError'] }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>Tipificación</label>
+
+                    <select name="sangreId" class="form-control form-control-sm" formControlName="sangreId"
+                        placeholder="sangreId" name="sangreId"
+                        [ngClass]="{'is-invalid': submitted && f['sangreId'].errors}">
+                        <option value=" 0">-Select-</option>
+                        <option [value]="1">A+</option>
+                        <option [value]="2">A-</option>
+                        <option [value]="3">B+</option>
+                        <option [value]="4">B-</option>
+                        <option [value]="5">AB+</option>
+                        <option [value]="6">AB-</option>
+                        <option [value]="7">O+</option>
+                        <option [value]="8">O-</option>
+                    </select>
+                    <div class="invalid-feedback" *ngIf="submitted && f['sangreId'].errors">
+                        <div *ngIf="f['sangreId'].hasError('required')">* Required
+                        </div>
+                        <div *ngIf="f['sangreId'].hasError('serverValidationError')">
+                            {{f['sangreId'].errors['serverValidationError']}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="peso"> Peso <br /> </label>
+                    <input class="form-control form-control-sm" type="text" name="peso" formControlName="peso"
+                        [ngClass]="{'is-invalid': submitted && f['peso'].errors}" />
+                    <div class="invalid-feedback" *ngIf="submitted && f['peso'].errors">
+                        <div *ngIf="f['peso'].hasError('required')">* Required</div>
+                        <div *ngIf="f['peso'].hasError('serverValidationError')">
+                            {{f['peso'].errors['serverValidationError'] }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="antecedentes_familiares"> Antecedentes Familiares <br /> </label>
+                    <input class="form-control form-control-sm" type="text" name="antecedentes_familiares"
+                        formControlName="antecedentes_familiares"
+                        [ngClass]="{'is-invalid': submitted && f['antecedentes_familiares'].errors}" />
+                    <div class="invalid-feedback" *ngIf="submitted && f['antecedentes_familiares'].errors">
+                        <div *ngIf="f['antecedentes_familiares'].hasError('required')">* Required</div>
+                        <div *ngIf="f['antecedentes_familiares'].hasError('serverValidationError')">
+                            {{f['antecedentes_familiares'].errors['serverValidationError'] }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="my-4">
+
+            <div [ngClass]="fallecido.checked ? 'col-md-3' : 'col-md-12'">
+                <mat-checkbox formControlName="fallecido" #fallecido>Fallecido?</mat-checkbox>
+            </div>
+            <div class="col-md-6" *ngIf="fallecido.checked">
+                <div class="form-group">
+                    <label for="motivo_fellecio"> Motivo Fallecimiento <br /> </label>
+                    <input class="form-control form-control-sm" type="text" name="motivo_fellecio"
+                        formControlName="motivo_fellecio"
+                        [ngClass]="{'is-invalid': submitted && f['motivo_fellecio'].errors}" />
+                    <div class="invalid-feedback" *ngIf="submitted && f['motivo_fellecio'].errors">
+                        <div *ngIf="f['motivo_fellecio'].hasError('required')">* Required</div>
+                        <div *ngIf="f['motivo_fellecio'].hasError('serverValidationError')">
+                            {{f['motivo_fellecio'].errors['serverValidationError'] }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3" *ngIf="fallecido.checked">
+                <div class="form-group">
+                    <label for="fecha_fellecido"> Fecha Fallecimiento <br /> </label>
+                    <input class="form-control form-control-sm" type="Date" name="fecha_fellecido"
+                        formControlName="fecha_fellecido"
+                        [ngClass]="{'is-invalid': submitted && f['fecha_fellecido'].errors}" />
+                    <div class="invalid-feedback" *ngIf="submitted && f['fecha_fellecido'].errors">
+                        <div *ngIf="f['fecha_fellecido'].hasError('required')">* Required</div>
+                        <div *ngIf="f['fecha_fellecido'].hasError('serverValidationError')">
+                            {{f['fecha_fellecido'].errors['serverValidationError'] }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4" *ngIf="fallecido.checked">
+
+            <div [ngClass]="vip.checked ? 'col-md-3' : 'col-md-12'">
+                <mat-checkbox #vip formControlName="vip">VIP?</mat-checkbox>
+            </div>
+            <div class="col-md-9" *ngIf="vip.checked">
+                <div class="form-group">
+                    <label for="vip_mensaje"> Nota VIP <br /> </label>
+                    <input class="form-control form-control-sm" type="text" name="vip_mensaje"
+                        formControlName="vip_mensaje"
+                        [ngClass]="{'is-invalid': submitted && f['vip_mensaje'].errors}" />
+                    <div class="invalid-feedback" *ngIf="submitted && f['vip_mensaje'].errors">
+                        <div *ngIf="f['vip_mensaje'].hasError('required')">* Required</div>
+                        <div *ngIf="f['vip_mensaje'].hasError('serverValidationError')">
+                            {{f['vip_mensaje'].errors['serverValidationError'] }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4" *ngIf="vip.checked">
+            <div [ngClass]="no_grato.checked ? 'col-md-3' : 'col-md-12'">
+                <mat-checkbox #no_grato formControlName="no_grato">No Grato?</mat-checkbox>
+            </div>
+            <div class="col-md-9" *ngIf="no_grato.checked">
+                <div class="form-group">
+                    <label for="nograto_mensaje"> Nota No Grato <br /> </label>
+                    <input class="form-control form-control-sm" type="text" name="nograto_mensaje"
+                        formControlName="nograto_mensaje"
+                        [ngClass]="{'is-invalid': submitted && f['nograto_mensaje'].errors}" />
+                    <div class="invalid-feedback" *ngIf="submitted && f['nograto_mensaje'].errors">
+                        <div *ngIf="f['nograto_mensaje'].hasError('required')">* Required</div>
+                        <div *ngIf="f['nograto_mensaje'].hasError('serverValidationError')">
+                            {{f['nograto_mensaje'].errors['serverValidationError'] }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="my-4">
+
+            <!-- <div class="col">
+                <mat-form-field appearance="outline">
+                    <mat-label>tarjeta</mat-label>
+                    <input matInput type="text" formControlName="tarjeta">
+                </mat-form-field>
+            </div> -->
+            <!-- <div class="col">
+                <mat-form-field appearance="outline">
+                    <mat-label>gestion_cobro</mat-label>
+                    <input matInput type="text" formControlName="gestion_cobro">
+                </mat-form-field>
+            </div> -->
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="observacion"> Observación <br /> </label>
+
+                    <textarea matInput cols="30" rows="2" placeholder="Deje una observacion."
+                        formControlName="observacion" class="form-control form-control-sm"
+                        [ngClass]="{'is-invalid': submitted && f['observacion'].errors}"></textarea>
+                    <div class="invalid-feedback" *ngIf="submitted && f['observacion'].errors">
+                        <div *ngIf="f['observacion'].hasError('required')">* Required</div>
+                        <div *ngIf="f['observacion'].hasError('serverValidationError')">
+                            {{f['observacion'].errors['serverValidationError'] }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="col">
+                <h2>Seguros Inscrito</h2>
+                <div formArrayName="seguros" fxLayout="column wrap" fxFlexAlign='stretch' fxLayoutGap="10px">
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>Seguro</th>
+                                <th>Plan</th>
+                                <th>Poliza</th>
+                                <th>Acción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <ng-container *ngFor="let segu of seguros.controls; let i = index">
+                                <ng-container [formGroupName]="i">
+                                    <tr>
+                                        <td>
+                                            {{segu.value.seguId}}
+                                            <mat-form-field appearance="outline">
+                                                <mat-select formControlName="seguId">
+                                                    <mat-option *ngFor="let seg of seguroSource" [value]="seg.id">
+                                                        {{seg.name}}</mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </td>
+                                        <td>
+                                            {{segu.value.seguPlanId}}
+                                            <mat-form-field appearance="outline">
+                                                <mat-select formControlName="seguPlanId">
+                                                    <mat-option *ngFor="let seg of seguroPlanesSource" [value]="seg.id">
+                                                        {{seg.name}}</mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </td>
+                                        <td>
+                                            {{segu.value.poliza}}
+                                            <mat-form-field appearance="outline">
+                                                <input matInput type="text" formControlName="poliza">
+                                            </mat-form-field>
+                                        </td>
+                                        <td>
+                                            <button mat-icon-button color="accent" type="button"
+                                                (click)="removeSeguFromPatient(i)">
+                                                <mat-icon class="mat-18">remove</mat-icon>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </ng-container>
+                            </ng-container>
+                            <ng-container *ngIf="!seguros.controls.length">
+                                <tr>
+                                    <td colspan="4">Ningun seguro registrado.</td>
+                                </tr>
+                            </ng-container>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="4">
+                                    <div>
+                                        <button mat-button type="button" color="accent" (click)="newSeguToPatient()">
+                                            <mat-icon class="mat-18">add</mat-icon> Agregar Seguro
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div> -->
+        </div>
+    </form>
+    <!-- <pre>{{frmPatient.value | json}}</pre> -->
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button type="submit" class="btn btn-dark me-md-2" [disabled]="!frmPatient.valid" (click)="onSubmit()"><i
+                class="fa fa-database"></i> Submit</button>
+        <button type="button" class="btn btn-outline-dark" [mat-dialog-close]><i class="fa fa-times"></i>
+            Close</button>
+    </div>
+</mat-dialog-actions>
